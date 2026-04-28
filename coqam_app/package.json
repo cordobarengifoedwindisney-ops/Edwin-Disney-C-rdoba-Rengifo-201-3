@@ -13,9 +13,9 @@
   "license": "GPL-3.0-or-later",
   "author": "maria jose valencia",
   "type": "module",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "express": "^5.2.1",
