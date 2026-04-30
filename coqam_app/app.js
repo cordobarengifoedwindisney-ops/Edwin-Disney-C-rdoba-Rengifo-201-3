@@ -1,15 +1,27 @@
-// const express = require ('express')
-import express from "express"; 
+import express from "express";
 
-const app = express ()
-const port = 3000
+import productosRouter from "./routes/productos.js";
 
-app.get("/",(req,res)=>{
-    res.send("BIENVENIDO lA TIENDA COQUITOOOOO AMARILLO DE LA NEGRA MARIA JOSÉ SAS");
+const app = express();
 
+const port = 3000;
+
+// Middleware
+app.use(express.json());
+
+// Ruta principal
+app.get("/", (req, res) => {
+
+    res.send("BIENVENIDO A COQUITO AMARILLO SAS");
 
 });
 
-app.listen (3000,()=> {
-    console.log (`example app listenig on port ${port} `);
-})
+// Rutas productos
+app.use("/api/productos", productosRouter);
+
+// Servidor
+app.listen(port, () => {
+
+    console.log(`Servidor ejecutándose en puerto ${port}`);
+
+});
