@@ -5,18 +5,27 @@ import { Router } from "express";
 import {
     getAllProductos,
     getProductoById,
-    createProducto
+    createProducto,
+    updateProducto,
+    deleteProducto
+
 } from "../controllers/productosController.js";
 
 const router = Router();
 
-// GET todos los productos
+// GET todos
 router.get("/", getAllProductos);
 
-// GET producto por ID
+// GET por ID
 router.get("/:id", getProductoById);
 
-// POST crear producto
+// POST
 router.post("/", createProducto);
+
+// PUT actualizar producto
+router.put("/:id", updateProducto);
+
+// DELETE eliminar producto
+router.delete("/:id", deleteProducto);
 
 export default router;

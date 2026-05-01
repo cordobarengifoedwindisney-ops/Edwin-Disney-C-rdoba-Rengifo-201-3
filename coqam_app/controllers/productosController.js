@@ -36,3 +36,45 @@ export const createProducto = (req, res) => {
 
     res.status(201).json(producto);
 };
+export const updateProducto = (req, res) => {
+
+    const id = req.params.id;
+
+    const datosActualizados = req.body;
+
+    const productoActualizado =
+        productosModel.update(id, datosActualizados);
+
+    if(productoActualizado){
+
+        res.json(productoActualizado);
+
+    } else {
+
+        res.status(404).json({
+            mensaje: "Producto no encontrado"
+        });
+
+    }
+};
+
+export const deleteProducto = (req, res) => {
+
+    const id = req.params.id;
+
+    const eliminado = productosModel.remove(id);
+
+    if(eliminado){
+
+        res.json({
+            mensaje: "Producto eliminado correctamente"
+        });
+
+    } else {
+
+        res.status(404).json({
+            mensaje: "Producto no encontrado"
+        });
+
+    }
+};
