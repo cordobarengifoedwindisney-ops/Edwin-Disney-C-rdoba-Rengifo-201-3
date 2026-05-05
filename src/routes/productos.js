@@ -5,7 +5,8 @@ const router = express.Router();
 let productos = [
   {
     id: 1,
-    nombre: "Coquito  ",
+    nombre: "Coquito  git add .
+git commit -m "merge: connect repo with upstream"",
     precio: 4500
   }
 ];
