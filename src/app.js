@@ -2,14 +2,25 @@ const express = require('express');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// IMPORTANTE 👇
-app.use('/api/productos', require('./routes/productos'));
+const productosRouter = require('./routes/productos');
+const pedidosRouter = require('./routes/pedidos');
+const pseRouter = require('./routes/pagos');
+
+app.use('/api/productos', productosRouter);
+app.use('/api/pedidos', pedidosRouter);
+app.use('/api/pagos-pse', pseRouter);
 
 app.get('/', (req, res) => {
-  res.send("API funcionando 🚀");
+  res.json({ mensaje: "API Coquito Amarillo S.A.S. funcionando 🚀" });
 });
 
-app.listen(3000, () => {
-  console.log("Servidor corriendo en puerto 3000");
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor escuchando en puerto ${PORT}`));
+
+module.exports = app;
