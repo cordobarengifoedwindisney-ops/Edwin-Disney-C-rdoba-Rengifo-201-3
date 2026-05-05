@@ -1,0 +1,25 @@
+const express = require('express');
+const app = express();
+
+// Middlewares
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Ruta de prueba
+app.get('/', (req, res) => {
+  res.send('API Coquito Amarillo funcionando');
+});
+
+// IMPORTAR RUTAS
+const productosRouter = require('./routes/productos');
+
+// USAR RUTAS
+app.use('/api/productos', productosRouter);
+
+// Puerto
+const PORT = process.env.PORT || 3000;
+
+// Levantar servidor (SIEMPRE AL FINAL)
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
