@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T'essence — Viste tu esencia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Helvetica+Neue:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f2f2f0;
+  --white:#ffffff;
+  --black:#111111;
+  --gold:#b8976a;
+  --gray:#999;
+  --light:#e8e8e4;
+  --text-sm:0.65rem;
+  --tracking:0.18em;
+}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  font-family:'Helvetica Neue',Helvetica,sans-serif;
+  font-weight:300;
+  color:var(--black);
+  min-height:100vh;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--light);}
+
+/* PAGES */
+.page{display:none;}
+.page.active{display:block;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem 3rem;
+  background:var(--bg);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem;font-weight:300;letter-spacing:0.25em;
+  color:var(--black);text-decoration:none;cursor:pointer;
+}
+.logo span{color:var(--gold);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{
+  font-size:var(--text-sm);letter-spacing:var(--tracking);
+  text-transform:uppercase;color:var(--gray);
+  cursor:pointer;transition:color 0.25s;text-decoration:none;
+}
+.nav-center a:hover{color:var(--black);}
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-right a{
+  font-size:var(--text-sm);letter-spacing:var(--tracking);
+  text-transform:uppercase;color:var(--gray);cursor:pointer;
+  transition:color 0.25s;
+}
+.nav-right a:hover{color:var(--black);}
+.cart-trigger{
+  display:flex;align-items:center;gap:0.6rem;
+  font-size:var(--text-sm);letter-spacing:var(--tracking);
+  text-transform:uppercase;color:var(--black);
+  cursor:pointer;background:none;border:none;font-family:inherit;
+  font-weight:300;
+}
+.cart-bubble{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--gold);color:var(--white);
+  font-size:0.5rem;display:flex;align-items:center;justify-content:center;
+}
+
+/* ═══════════════ HOME ═══════════════ */
+#home{padding-top:70px;}
+
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:92vh;
+}
+.hero-left{
+  padding:5rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.hero-tag{
+  font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2rem;
+}
+.hero-left h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:5rem;font-weight:300;line-height:1.0;
+  letter-spacing:-0.02em;margin-bottom:2rem;
+}
+.hero-left h1 em{font-style:italic;color:var(--gold);}
+.hero-left p{
+  font-size:0.7rem;letter-spacing:0.12em;line-height:2.2;
+  color:var(--gray);max-width:320px;margin-bottom:3rem;
+}
+.hero-right{
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.hero-product-display{
+  text-align:center;
+}
+.hero-product-display .big-emoji{
+  font-size:14rem;display:block;line-height:1;
+  filter:drop-shadow(0 30px 60px rgba(0,0,0,0.08));
+  cursor: pointer;transition:transform 0.4s ease;
+}
+.hero-label{
+  position:absolute;bottom:3rem;left:3rem;
+  font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);
+}
+.hero-season{
+  position:absolute;top:3rem;right:3rem;
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;color:var(--light);
+  line-height:1;
+}
+
+.btn{
+  display:inline-block;
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  padding:0.9rem 2.5rem;cursor:pointer;
+  transition:all 0.25s;border:none;font-family:inherit;font-weight:300;
+}
+.btn-dark{background:var(--black);color:var(--white);}
+.btn-dark:hover{background:var(--gold);}
+.btn-outline{background:none;border:1px solid var(--black);color:var(--black);}
+.btn-outline:hover{background:var(--black);color:var(--white);}
+
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(0,0,0,0.06);
+}
+.stat{
+  padding:2.5rem 3rem;border-right:1px solid rgba(0,0,0,0.06);
+}
+.stat:last-child{border-right:none;}
+.stat-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:300;color:var(--black);margin-bottom:0.3rem;
+}
+.stat-label{font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);}
+
+.home-collection{padding:5rem 3rem;}
+.section-label{
+  font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:300;margin-bottom:3rem;
+}
+.home-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,0.06);}
+.home-card{
+  background:var(--bg);padding:2.5rem 2rem;cursor:pointer;
+  transition:background 0.3s;
+}
+.home-card:hover{background:var(--white);}
+.home-card-img{
+  height:220px;display:flex;align-items:center;justify-content:center;
+  font-size:6rem;margin-bottom:1.5rem;
+  filter:drop-shadow(0 10px 30px rgba(0,0,0,0.06));
+}
+.home-card-cat{font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+.home-card-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;margin-bottom:0.4rem;}
+.home-card-price{font-size:0.65rem;letter-spacing:0.1em;color:var(--gray);}
+
+/* ═══════════════ CATALOG ═══════════════ */
+#catalog{padding-top:70px;}
+
+.catalog-header{
+  padding:4rem 3rem 2rem;
+  display:flex;justify-content:space-between;align-items:flex-end;
+}
+.catalog-header-left h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:3rem;font-weight:300;margin-bottom:0.3rem;
+}
+.catalog-header-left p{font-size:0.6rem;letter-spacing:0.15em;color:var(--gray);}
+.filters{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.filter{
+  font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;
+  padding:0.5rem 1.2rem;cursor:pointer;
+  background:none;border:1px solid var(--light);
+  color:var(--gray);font-family:inherit;font-weight:300;
+  transition:all 0.2s;
+}
+.filter.active,.filter:hover{border-color:var(--black);color:var(--black);}
+
+.catalog-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(0,0,0,0.05);
+  margin:0;padding:1px;
+}
+.prod-card{
+  background:var(--bg);padding:0;cursor:pointer;
+  transition:background 0.3s;position:relative;overflow:hidden;
+}
+.prod-card:hover{background:var(--white);}
+.prod-img{
+  height:300px;display:flex;align-items:center;justify-content:center;
+  font-size:7rem;
+  filter:drop-shadow(0 15px 40px rgba(0,0,0,0.08));
+  transition:transform 0.4s ease;
+}
+.prod-card:hover .prod-img{transform:scale(1.04);}
+.prod-info{padding:1.5rem 2rem 2rem;}
+.prod-cat{font-size:0.5rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.3rem;}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;margin-bottom:0.3rem;}
+.prod-price{font-size:0.65rem;letter-spacing:0.08em;color:var(--gray);}
+.prod-add{
+  position:absolute;bottom:1.5rem;right:1.5rem;
+  width:34px;height:34px;
+  background:var(--black);color:var(--white);
+  border:none;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:translateY(4px);
+  transition:all 0.25s;
+}
+.prod-card:hover .prod-add{opacity:1;transform:translateY(0);}
+.prod-add:hover{background:var(--gold);}
+
+/* ═══════════════ DETAIL ═══════════════ */
+#detail{padding-top:70px;}
+.detail-wrap{display:grid;grid-template-columns:55% 45%;min-height:90vh;}
+.detail-visual{
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14rem;position:relative;
+}
+.detail-visual .size-chip{
+  position:absolute;top:2rem;left:2rem;
+  font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gray);border:1px solid var(--light);padding:0.4rem 0.8rem;
+}
+.detail-info{
+  padding:4rem 3rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.back-btn{
+  font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray);cursor:pointer;background:none;border:none;
+  font-family:inherit;font-weight:300;text-align:left;margin-bottom:3rem;
+  transition:color 0.2s;display:flex;align-items:center;gap:0.5rem;
+}
+.back-btn:hover{color:var(--black);}
+.d-cat{font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.d-name{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;line-height:1.05;margin-bottom:1rem;}
+.d-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);margin-bottom:1.5rem;}
+.d-desc{font-size:0.68rem;letter-spacing:0.1em;line-height:2.2;color:var(--gray);margin-bottom:2.5rem;max-width:380px;}
+.d-divider{width:40px;height:1px;background:var(--light);margin-bottom:2.5rem;}
+.size-label-text{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;color:var(--gray);}
+.size-grid{display:flex;gap:0.4rem;margin-bottom:2rem;}
+.sz{
+  width:38px;height:38px;border:1px solid var(--light);
+  background:none;font-family:inherit;font-size:0.6rem;
+  letter-spacing:0.05em;cursor:pointer;transition:all 0.2s;color:var(--gray);
+}
+.sz.active,.sz:hover{border-color:var(--black);background:var(--black);color:var(--white);}
+.d-stock{font-size:0.58rem;letter-spacing:0.15em;color:var(--gray);margin-bottom:2.5rem;}
+.d-actions{display:flex;gap:0.8rem;}
+
+/* ═══════════════ CART ═══════════════ */
+#cart{padding-top:70px;}
+.cart-wrap{display:grid;grid-template-columns:1fr 400px;min-height:88vh;}
+.cart-main{padding:3.5rem 3rem;border-right:1px solid rgba(0,0,0,0.06);}
+.cart-main h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:0.5rem;}
+.cart-sub{font-size:0.6rem;letter-spacing:0.15em;color:var(--gray);margin-bottom:3rem;}
+.c-item{
+  display:grid;grid-template-columns:90px 1fr auto;gap:2rem;
+  padding:2rem 0;border-bottom:1px solid rgba(0,0,0,0.06);align-items:start;
+}
+.c-img{
+  background:var(--white);height:90px;
+  display:flex;align-items:center;justify-content:center;font-size:2.5rem;
+}
+.c-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;margin-bottom:0.4rem;}
+.c-meta{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);margin-bottom:0.8rem;}
+.c-remove{
+  font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gray);background:none;border:none;cursor:pointer;
+  font-family:inherit;font-weight:300;padding:0;transition:color 0.2s;
+}
+.c-remove:hover{color:var(--black);}
+.c-price{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;white-space:nowrap;}
+.cart-empty-state{
+  padding:6rem 0;text-align:center;
+}
+.cart-empty-state p{
+  font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;
+  color:var(--gray);margin-bottom:2rem;
+}
+.cart-side{
+  padding:3.5rem 2.5rem;background:var(--white);
+}
+.cart-side h2{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;
+  margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.06);
+}
+.sum-row{
+  display:flex;justify-content:space-between;
+  font-size:0.62rem;letter-spacing:0.1em;color:var(--gray);
+  margin-bottom:1rem;
+}
+.sum-total{
+  display:flex;justify-content:space-between;
+  padding-top:1.5rem;margin-top:0.5rem;
+  border-top:1px solid rgba(0,0,0,0.06);
+  font-size:0.9rem;letter-spacing:0.05em;
+}
+.sum-total span:last-child{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.4rem;}
+.pse-btn{
+  width:100%;margin-top:2rem;padding:1.1rem;
+  background:var(--black);color:var(--white);border:none;
+  font-family:inherit;font-weight:300;font-size:0.6rem;
+  letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.25s;
+}
+.pse-btn:hover{background:var(--gold);}
+.security-note{
+  font-size:0.5rem;letter-spacing:0.1em;color:var(--gray);
+  text-align:center;margin-top:1rem;line-height:1.8;
+}
+
+/* ═══════════════ PSE ═══════════════ */
+#pse{padding-top:70px;}
+.pse-wrap{max-width:640px;margin:0 auto;padding:4rem 2rem;}
+.pse-wrap .back-btn{margin-bottom:2.5rem;}
+.pse-wrap h1{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;margin-bottom:0.4rem;}
+.pse-sub-title{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gray);margin-bottom:3rem;}
+.pse-amount-box{
+  background:var(--white);padding:2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:2.5rem;
+}
+.pse-amount-box span:first-child{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);}
+.pse-amount-box span:last-child{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold);}
+.f-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.f-full{grid-column:1/-1;}
+.fg{display:flex;flex-direction:column;gap:0.5rem;}
+.fg label{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);}
+.fg input,.fg select{
+  border:1px solid var(--light);padding:0.75rem 1rem;
+  font-family:inherit;font-weight:300;font-size:0.72rem;
+  background:var(--white);color:var(--black);outline:none;
+  transition:border-color 0.2s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.fg input:focus,.fg select:focus{border-color:var(--black);}
+.confirm-btn{
+  width:100%;padding:1.1rem;margin-top:2rem;
+  background:var(--black);color:var(--white);border:none;
+  font-family:inherit;font-weight:300;font-size:0.6rem;
+  letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;
+  transition:background 0.25s;
+}
+.confirm-btn:hover{background:var(--gold);}
+.pse-loading{
+  display:none;text-align:center;padding:3rem;
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gray);
+}
+.pse-loading.show{display:block;}
+.pse-success{
+  display:none;margin-top:2rem;
+  background:var(--black);padding:2.5rem;
+}
+.pse-success.show{display:block;}
+.pse-success h3{
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;
+  font-weight:300;color:var(--gold);margin-bottom:1rem;
+}
+.pse-success p{font-size:0.62rem;letter-spacing:0.1em;line-height:2;color:#999;}
+.pse-success .txn-ref{
+  font-size:0.7rem;color:var(--white);margin-top:0.8rem;
+  font-family:'Cormorant Garamond',serif;font-size:1rem;
+}
+.pse-success .estado{color:var(--gold);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;margin-top:1rem;display:block;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="showPage('home')">T<span>'</span>essence</div>
+  <div class="nav-center">
+    <a onclick="showPage('home')">Inicio</a>
+    <a onclick="showPage('catalog')">Colección</a>
+    <a onclick="showPage('catalog')">Nosotros</a>
+  </div>
+  <div class="nav-right">
+    <button class="cart-trigger" onclick="showPage('cart')">
+      Carrito
+      <span class="cart-bubble" id="cartCount">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Colección 2026</div>
+      <h1>Viste tu<br><em>esencia</em></h1>
+      <p>Cada prenda es una extensión de quien eres. Minimalismo, calidad y autenticidad en cada detalle.</p>
+      <button class="btn btn-dark" onclick="showPage('catalog')">Explorar Colección</button>
+    </div>
+    <div class="hero-right">
+      <div class="hero-product-display">
+        <span class="big-emoji">👕</span>
+      </div>
+      <div class="hero-label">Algodón Premium · Hecho en Colombia</div>
+      <div class="hero-season">2026</div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Algodón Premium</div></div>
+    <div class="stat"><div class="stat-num">Hecho</div><div class="stat-label">En Colombia</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Piezas Exclusivas</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Estilo Atemporal</div></div>
+  </div>
+
+  <div class="home-collection">
+    <div class="section-label">Lo más reciente</div>
+    <div class="section-title">Colección Esencial</div>
+    <div class="home-grid" id="homeGrid"></div>
+    <div style="text-align:center;margin-top:3rem;">
+      <button class="btn btn-outline" onclick="showPage('catalog')">Ver toda la colección</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CATALOG ═══ -->
+<div id="catalog" class="page">
+  <div class="catalog-header">
+    <div class="catalog-header-left">
+      <div class="section-label">T'essence</div>
+      <h1>Colección 2026</h1>
+      <p id="catalogCount">6 piezas disponibles</p>
+    </div>
+    <div class="filters">
+      <button class="filter active" onclick="filterCat('all',this)">Todos</button>
+      <button class="filter" onclick="filterCat('basicas',this)">Básicas</button>
+      <button class="filter" onclick="filterCat('premium',this)">Premium</button>
+      <button class="filter" onclick="filterCat('edicion',this)">Edición Limitada</button>
+    </div>
+  </div>
+  <div class="catalog-grid" id="catalogGrid"></div>
+</div>
+
+<!-- ═══ DETAIL ═══ -->
+<div id="detail" class="page">
+  <div class="detail-wrap">
+    <div class="detail-visual">
+      <span id="d-emoji" style="filter:drop-shadow(0 20px 60px rgba(0,0,0,0.08));">👕</span>
+      <div class="size-chip" id="d-chip">Talla S</div>
+    </div>
+    <div class="detail-info">
+      <button class="back-btn" onclick="showPage('catalog')">← Volver</button>
+      <div class="d-cat" id="d-cat">Premium</div>
+      <div class="d-name" id="d-name">Camiseta</div>
+      <div class="d-price" id="d-price">$0</div>
+      <div class="d-divider"></div>
+      <div class="d-desc" id="d-desc">Descripción.</div>
+      <div class="size-label-text">Selecciona tu talla</div>
+      <div class="size-grid">
+        <button class="sz" onclick="pickSize(this,'XS')">XS</button>
+        <button class="sz active" onclick="pickSize(this,'S')">S</button>
+        <button class="sz" onclick="pickSize(this,'M')">M</button>
+        <button class="sz" onclick="pickSize(this,'L')">L</button>
+        <button class="sz" onclick="pickSize(this,'XL')">XL</button>
+      </div>
+      <div class="d-stock" id="d-stock"></div>
+      <div class="d-actions">
+        <button class="btn btn-dark" onclick="addFromDetail()">Agregar al carrito</button>
+        <button class="btn btn-outline" onclick="showPage('cart')">Ver carrito</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CART ═══ -->
+<div id="cart" class="page">
+  <div class="cart-wrap">
+    <div class="cart-main">
+      <h1>Tu Carrito</h1>
+      <p class="cart-sub" id="cartSubtitle">0 productos</p>
+      <div id="cartList"></div>
+    </div>
+    <div class="cart-side">
+      <h2>Resumen</h2>
+      <div class="sum-row"><span>Subtotal</span><span id="sumSub">$0</span></div>
+      <div class="sum-row"><span>Envío</span><span>Gratis</span></div>
+      <div class="sum-row"><span>IVA (19%)</span><span id="sumIva">$0</span></div>
+      <div class="sum-total">
+        <span>Total</span>
+        <span id="sumTotal">$0</span>
+      </div>
+      <button class="pse-btn" onclick="showPage('pse')">Pagar</button>
+      <p class="security-note">Pago 100% seguro<br>ACH Colombia · Habeas Data Ley 1581</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PSE ═══ -->
+<div id="pse" class="page">
+  <div class="pse-wrap">
+    <button class="back-btn" onclick="showPage('cart')">← Volver al carrito</button>
+    <h1>Pago PSE</h1>
+    <p class="pse-sub-title">Pasarela Segura · ACH Colombia</p>
+    <div class="pse-amount-box">
+      <span>Total a pagar</span>
+      <span id="pseAmt">$0</span>
+    </div>
+    <div class="f-grid">
+      <div class="fg">
+        <label>Tipo de Persona</label>
+        <select id="tipoPer">
+          <option value="N">Natural</option>
+          <option value="J">Jurídica</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Tipo de Documento</label>
+        <select id="tipoDoc">
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="NIT">NIT</option>
+          <option value="CE">Cédula Extranjería</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Número de Documento</label>
+        <input type="text" id="numDoc" placeholder="1234567890">
+      </div>
+      <div class="fg">
+        <label>Banco</label>
+        <select id="banco">
+          <option value="1007">Bancolombia</option>
+          <option value="1006">Banco de Bogotá</option>
+          <option value="1009">Davivienda</option>
+          <option value="1040">Banco Agrario</option>
+          <option value="1013">BBVA Colombia</option>
+        </select>
+      </div>
+      <div class="fg f-full">
+        <label>Nombre Completo</label>
+        <input type="text" id="nombreCliente" placeholder="Tu nombre completo">
+      </div>
+      <div class="fg f-full">
+        <label>Correo Electrónico</label>
+        <input type="email" id="emailCliente" placeholder="correo@ejemplo.com">
+      </div>
+    </div>
+    <button class="confirm-btn" onclick="procesarPago()">Confirmar Pago</button>
+    <div class="pse-loading" id="pseLoading">Procesando con PSE...</div>
+    <div class="pse-success" id="pseSuccess">
+      <h3>Transacción Iniciada</h3>
+      <p>Tu pago fue enviado a PSE para procesamiento. Recibirás una confirmación en tu correo.</p>
+      <div class="txn-ref" id="txnRef">Referencia: —</div>
+      <span class="estado">Estado: PENDIENTE</span>
+      <div style="margin-top:2rem;">
+        <button class="btn btn-outline" style="color:#fff;border-color:#444;" onclick="showPage('home')">Volver al inicio</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const PRODUCTOS = [
+  {id:'prod-001',nombre:'Esencia Negra',cat:'premium',
+   desc:'Camiseta premium 100% algodón pima. Corte recto, cuello redondo reforzado. La base de todo guardarropa con esencia.',
+   precio:89900,stock:45,emoji:'🖤'},
+  {id:'prod-002',nombre:'Blanc Pur',cat:'basicas',
+   desc:'Blanco inmaculado. Algodón suave de 180g, confección colombiana artesanal. Versatilidad en su forma más pura.',
+   precio:69900,stock:80,emoji:'🤍'},
+  {id:'prod-003',nombre:'Édition Or',cat:'edicion',
+   desc:'Edición limitada con bordado dorado en el pecho. Solo 50 unidades. Lleva tu esencia a otro nivel.',
+   precio:129900,stock:12,emoji:'✨'},
+  {id:'prod-004',nombre:'Gris Urbain',cat:'basicas',
+   desc:'El gris perfecto para cada ocasión. Tejido de doble hilo que garantiza durabilidad y suavidad.',
+   precio:74900,stock:60,emoji:'🩶'},
+  {id:'prod-005',nombre:'Minuit',cat:'premium',
+   desc:'Negro medianoche con acabado mate. Cuello en V con ribete dorado interior. Distinción en cada fibra.',
+   precio:99900,stock:30,emoji:'🌙'},
+  {id:'prod-006',nombre:'Nude Essence',cat:'edicion',
+   desc:'Tono nude exclusivo temporada 2026. Algodón orgánico certificado, tinte natural.',
+   precio:119900,stock:20,emoji:'🌿'},
+];
+
+let cart = [];
+let currentProduct = null;
+let selectedSize = 'S';
+
+const fmt = n => '$' + Math.round(n).toLocaleString('es-CO');
+const catLabel = c => c==='basicas'?'Básicas':c==='premium'?'Premium':'Edición Limitada';
+const getTotal = () => cart.reduce((a,c)=>a+c.precio*c.qty,0);
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='home') renderHome();
+  if(id==='catalog') renderCatalog('all');
+  if(id==='cart') renderCart();
+  if(id==='pse'){
+    const t = Math.round(getTotal()*1.19);
+    document.getElementById('pseAmt').textContent = fmt(t);
+    document.getElementById('pseSuccess').classList.remove('show');
+    document.getElementById('pseLoading').classList.remove('show');
+  }
+}
+
+function renderHome(){
+  const grid = document.getElementById('homeGrid');
+  grid.innerHTML = PRODUCTOS.slice(0,4).map(p=>`
+    <div class="home-card" onclick="showDetail('${p.id}')">
+      <div class="home-card-img">${p.emoji}</div>
+      <div class="home-card-cat">${catLabel(p.cat)}</div>
+      <div class="home-card-name">${p.nombre}</div>
+      <div class="home-card-price">${fmt(p.precio)} COP</div>
+    </div>
+  `).join('');
+}
+
+function renderCatalog(cat){
+  const filtered = cat==='all'?PRODUCTOS:PRODUCTOS.filter(p=>p.cat===cat);
+  document.getElementById('catalogCount').textContent = filtered.length+' piezas disponibles';
+  document.getElementById('catalogGrid').innerHTML = filtered.map(p=>`
+    <div class="prod-card" onclick="showDetail('${p.id}')">
+      <div class="prod-img">${p.emoji}</div>
+      <div class="prod-info">
+        <div class="prod-cat">${catLabel(p.cat)}</div>
+        <div class="prod-name">${p.nombre}</div>
+        <div class="prod-price">${fmt(p.precio)} COP</div>
+      </div>
+      <button class="prod-add" onclick="event.stopPropagation();quickAdd('${p.id}')">+</button>
+    </div>
+  `).join('');
+}
+
+function filterCat(cat, btn){
+  document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCatalog(cat);
+}
+
+function showDetail(id){
+  currentProduct = PRODUCTOS.find(p=>p.id===id);
+  selectedSize='S';
+  document.getElementById('d-emoji').textContent = currentProduct.emoji;
+  document.getElementById('d-cat').textContent = catLabel(currentProduct.cat);
+  document.getElementById('d-name').textContent = currentProduct.nombre;
+  document.getElementById('d-price').textContent = fmt(currentProduct.precio)+' COP';
+  document.getElementById('d-desc').textContent = currentProduct.desc;
+  document.getElementById('d-stock').textContent = currentProduct.stock+' unidades disponibles';
+  document.getElementById('d-chip').textContent = 'Talla S';
+  document.querySelectorAll('.sz').forEach(b=>{b.classList.remove('active');if(b.textContent==='S')b.classList.add('active');});
+  showPage('detail');
+}
+
+function pickSize(btn, size){
+  document.querySelectorAll('.sz').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedSize=size;
+  document.getElementById('d-chip').textContent='Talla '+size;
+}
+
+function quickAdd(id){
+  const p=PRODUCTOS.find(x=>x.id===id);
+  addToCart(p,'M');
+}
+
+function addToCart(p, size){
+  const ex=cart.find(c=>c.id===p.id&&c.size===size);
+  if(ex) ex.qty++;
+  else cart.push({...p,size,qty:1});
+  updateCartCount();
+}
+
+function addFromDetail(){
+  if(!currentProduct) return;
+  addToCart(currentProduct, selectedSize);
+  showPage('cart');
+}
+
+function updateCartCount(){
+  const n=cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById('cartCount').textContent=n;
+}
+
+function renderCart(){
+  const list=document.getElementById('cartList');
+  const n=cart.reduce((a,c)=>a+c.qty,0);
+  document.getElementById('cartSubtitle').textContent=n+' producto'+(n!==1?'s':'');
+  if(cart.length===0){
+    list.innerHTML=`<div class="cart-empty-state"><p>Tu carrito está vacío</p><button class="btn btn-dark" onclick="showPage('catalog')">Explorar colección</button></div>`;
+  } else {
+    list.innerHTML=cart.map((c,i)=>`
+      <div class="c-item">
+        <div class="c-img">${c.emoji}</div>
+        <div>
+          <div class="c-name">${c.nombre}</div>
+          <div class="c-meta">Talla ${c.size} · Qty ${c.qty}</div>
+          <button class="c-remove" onclick="removeItem(${i})">Eliminar</button>
+        </div>
+        <div class="c-price">${fmt(c.precio*c.qty)}</div>
+      </div>
+    `).join('');
+  }
+  const sub=getTotal();
+  document.getElementById('sumSub').textContent=fmt(sub);
+  document.getElementById('sumIva').textContent=fmt(sub*0.19);
+  document.getElementById('sumTotal').textContent=fmt(sub*1.19);
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  updateCartCount();
+  renderCart();
+}
+
+async function procesarPago(){
+  const numDoc=document.getElementById('numDoc').value.trim();
+  const nombre=document.getElementById('nombreCliente').value.trim();
+  const email=document.getElementById('emailCliente').value.trim();
+  if(!numDoc||!nombre||!email){alert('Por favor completa todos los campos.');return;}
+  if(cart.length===0){alert('Tu carrito está vacío.');return;}
+  const monto=Math.round(getTotal()*1.19);
+  document.getElementById('pseLoading').classList.add('show');
+  document.getElementById('pseSuccess').classList.remove('show');
+  try{
+    const res=await fetch('/api/pagos-pse',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        banco_codigo:document.getElementById('banco').value,
+        tipo_persona:document.getElementById('tipoPer').value,
+        tipo_documento:document.getElementById('tipoDoc').value,
+        numero_documento:numDoc,
+        monto,
+        descripcion:"Compra T'essence — "+cart.map(c=>c.nombre).join(', '),
+        url_respuesta:'https://tessence.co/pagos/respuesta'
+      })
+    });
+    const data=await res.json();
+    document.getElementById('txnRef').textContent='Referencia: '+data.referencia;
+  }catch(e){
+    document.getElementById('txnRef').textContent='Referencia: TXN-'+Date.now();
+  }
+  document.getElementById('pseLoading').classList.remove('show');
+  document.getElementById('pseSuccess').classList.add('show');
+  cart=[];
+  updateCartCount();
+}
+
+renderHome();
+</script>
+</body>
+</html>

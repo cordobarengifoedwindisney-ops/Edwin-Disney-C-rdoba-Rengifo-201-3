@@ -1,8 +1,11 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 const productosRouter = require('./routes/productos');
 const pedidosRouter = require('./routes/pedidos');
@@ -13,7 +16,7 @@ app.use('/api/pedidos', pedidosRouter);
 app.use('/api/pagos-pse', pseRouter);
 
 app.get('/', (req, res) => {
-  res.json({ mensaje: "API Coquito Amarillo S.A.S. funcionando 🚀" });
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.use((err, req, res, next) => {
