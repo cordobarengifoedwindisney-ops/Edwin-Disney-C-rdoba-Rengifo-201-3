@@ -1,28 +1,33 @@
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import productosRouter from "./routes/productos.js";
-import pedidosRouter from "./routes/pedidos.js";
-
+// IMPORTANTE: Importamos tus rutas
+import productosRoutes from "./routes/productos.js";
+import pedidosRoutes from "./routes/pedidos.js";
 
 const app = express();
-
 const port = 3000;
 
-// Middleware
-app.use(express.json());
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
+// Middlewares necesarios
+app.use(express.json()); // Para poder recibir datos en los POST (pedidos)
+app.use(express.static(path.join(__dirname, "public")));
 
+// --- CONEXIÓN DE RUTAS API ---
+app.use("/api/productos", productosRoutes);
+app.use("/api/pedidos", pedidosRoutes);
+
+// Ruta para el frontend
 app.get("/", (req, res) => {
-
-    res.send("BIENVENIDO A COQUITO AMARILLO SAS");
-
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.use("/api/productos", productosRouter);
-app.use("/api/pedidos", pedidosRouter);
-
-app.listen(port, () => {
-
-    console.log(`Servidor ejecutándose en puerto ${port}`);
-
+app.listen(port, "0.0.0.0", () => {
+    console.log(`---`);
+    console.log(`🚀 COQUITO AMARILLO S.A.S. - Servidor Activo`);
+    console.log(`🔗 API Productos: http://localhost:${port}/api/productos`);
+    console.log(`---`);
 });

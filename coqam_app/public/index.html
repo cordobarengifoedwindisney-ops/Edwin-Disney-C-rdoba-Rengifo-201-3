@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coquito Amarillo S.A.S. - Tienda Virtual</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="img/COQUITO LOGO.jpeg" alt="Logo Coquito Amarillo">
+            </div>
+            <span class="brand-name">COQUITO AMARILLO S.A.S</span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#" onclick="filtrarPorCategoria('todas')">Inicio</a></li>
+                <li class="dropdown">
+                    Productos ▾
+                    <ul class="submenu">
+                        <li><a href="#" onclick="filtrarPorCategoria('todas')">Ver Todo</a></li>
+                        <hr>
+                        <li><a href="#" onclick="filtrarPorCategoria('Velas aromáticas')">Velas Aromáticas</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Jabones artesanales')">Jabones Artesanales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Sales minerales')">Sales Minerales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Aceites corporales')">Aceites Corporales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Exfoliantes')">Exfoliantes</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Gloss hidratante')">Gloss Hidratante</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Desodorantes')">Desodorantes</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Serum oleosos')">Serum Oleosos</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Perfumes')">Perfumes</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Tónico')">Tónico</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Mascarillas')">Mascarillas</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Asesorías</a></li>
+                <li><a href="#">Encuéntranos</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <a href="/api/pagos-pse" class="btn-pse">
+                <img src="https://redpyme.mibanco.com.co/wp-content/uploads/2021/03/logo-pse.png" alt="PSE">
+                Pagar Pedido
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Artesanías que iluminan tu alma</h1>
+           <p> MEDELLIN-COLOMBIA</p>
+        </section>
+
+        <section id="catalogo" class="productos-container"></section>
+    </main>
+
+    <div id="modalProducto" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <div class="modal-body">
+                <img id="modalImg" src="" alt="">
+                <div class="modal-info">
+                    <h2 id="modalNombre"></h2>
+                    <p id="modalId" class="id-tag"></p>
+                    <p id="modalDescripcion"></p>
+                    <p id="modalStock" style="font-weight: bold; margin-top: 10px;"></p>
+                    <p id="modalPrecio" class="precio-grande"></p>
+                    <button class="btn-comprar">Agregar al Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let todosLosProductos = [];
+
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch('/api/productos');
+                todosLosProductos = await respuesta.json();
+                mostrarProductos(todosLosProductos);
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+            }
+        }
+
+        function mostrarProductos(lista) {
+            const contenedor = document.getElementById('catalogo');
+            contenedor.innerHTML = lista.map(p => `
+                <div class="producto-card" onclick="verDetalles('${p.id}')">
+                    <img src="img/${p.id}.jpg" onerror="this.src='img/COQUITO LOGO.jpeg'">
+                    <h3>${p.nombre}</h3>
+                    <p class="precio">$${p.precio.toLocaleString()}</p>
+                    <span class="ver-mas">Click para ver detalles</span>
+                </div>
+            `).join('');
+        }
+
+        function verDetalles(id) {
+            const p = todosLosProductos.find(prod => prod.id === id);
+            document.getElementById('modalNombre').innerText = p.nombre;
+            document.getElementById('modalId').innerText = `Referencia: ${p.id}`;
+            document.getElementById('modalDescripcion').innerText = p.descripcion;
+            document.getElementById('modalStock').innerText = `Stock: ${p.stock} unidades`;
+            document.getElementById('modalPrecio').innerText = `$${p.precio.toLocaleString()}`;
+            document.getElementById('modalImg').src = `img/${p.id}.jpg`;
+            document.getElementById('modalProducto').style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalProducto').style.display = "none";
+        }
+
+        function filtrarPorCategoria(cat) {
+            if (cat === 'todas') mostrarProductos(todosLosProductos);
+            else mostrarProductos(todosLosProductos.filter(p => p.categoria.trim() === cat.trim()));
+        }
+
+        cargarProductos();
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modalProducto')) cerrarModal();
+        }
+    </script>
+</body>
+</html>

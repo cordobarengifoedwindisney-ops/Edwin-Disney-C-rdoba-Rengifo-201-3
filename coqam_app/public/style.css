@@ -1,0 +1,153 @@
+/* RESET GENERAL */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFFFFF; /* FONDO BLANCO */
+    padding-top: 150px;
+    color: #5c4326;
+}
+
+/* HEADER AMARILLO */
+header {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    background: #FFEE8C; /* AMARILLO COQUITO */
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid rgba(92, 67, 38, 0.1);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+/* CONTENEDOR LOGO Y NOMBRE */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 300px;
+}
+
+.logo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5c4326;
+}
+
+.brand-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #5c4326;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* NAVEGACIÓN DESPLAZADA A LA DERECHA */
+nav {
+    margin-left: 80px;
+    flex-grow: 1;
+}
+
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    align-items: center;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #5c4326;
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover { color: #c58b00; }
+
+/* BOTÓN PSE */
+.header-actions { margin-left: auto; }
+
+.btn-pse {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #5c4326;
+    color: white !important;
+    padding: 10px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-pse img { width: 18px; filter: brightness(0) invert(1); }
+
+/* SUBMENÚ CON SCROLL */
+.dropdown { position: relative; cursor: pointer; color: #5c4326; font-weight: 500; }
+.submenu {
+    position: absolute; top: 100%; left: 0; background: white;
+    min-width: 240px; max-height: 380px; overflow-y: auto;
+    padding: 15px; border-radius: 12px;
+    display: none; flex-direction: column; gap: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+}
+.dropdown:hover .submenu { display: flex; }
+.submenu::-webkit-scrollbar { width: 5px; }
+.submenu::-webkit-scrollbar-thumb { background: #5c4326; border-radius: 10px; }
+
+/* CATALOGO */
+.productos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 35px;
+    padding: 40px 5%;
+}
+
+.producto-card {
+    background: #fdfdfd; 
+    padding: 20px; 
+    border-radius: 20px;
+    text-align: center; 
+    cursor: pointer; 
+    transition: 0.4s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+.producto-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+.producto-card img { width: 100%; height: 260px; object-fit: cover; border-radius: 15px; margin-bottom: 12px; }
+.precio { font-weight: 700; color: #c58b00; font-size: 1.3rem; }
+.ver-mas { font-size: 11px; color: #aaa; text-transform: uppercase; margin-top: 8px; display: block; }
+
+/* MODAL */
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); }
+.modal-content { background: white; margin: 5% auto; padding: 35px; border-radius: 25px; width: 85%; max-width: 850px; position: relative; animation: slide 0.3s; }
+@keyframes slide { from {opacity: 0; transform: translateY(-30px);} to {opacity: 1; transform: translateY(0);} }
+.close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; }
+.modal-body { display: flex; gap: 35px; }
+.modal-body img { width: 400px; height: 400px; object-fit: cover; border-radius: 20px; }
+.modal-info { display: flex; flex-direction: column; justify-content: center; }
+.id-tag { font-size: 12px; color: #bbb; margin-bottom: 10px; }
+.precio-grande { font-size: 2.2rem; color: #c58b00; font-weight: 700; margin: 15px 0; }
+.btn-comprar { background: #5c4326; color: white; padding: 15px; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: 16px; }
+
+.hero { text-align: center; color: #5c4326; margin-bottom: 20px; }
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+    nav { margin-left: 20px; }
+    .brand-name { font-size: 0.9rem; }
+}
+@media (max-width: 768px) {
+    header { height: auto; padding: 15px; flex-direction: column; gap: 15px; }
+    nav { margin-left: 0; }
+    .modal-body { flex-direction: column; }
+    .modal-body img { width: 100%; height: auto; }
+}
