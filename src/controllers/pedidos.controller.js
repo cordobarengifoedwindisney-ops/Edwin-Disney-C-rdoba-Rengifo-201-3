@@ -66,6 +66,26 @@ const updatePedido = (req, res) => {
 
 };
 
+const deletePedido = (req, res) => {
+
+  const { id } = req.params;
+
+  const pedidoIndex = pedidos.findIndex(p => p.id === id);
+
+  if (pedidoIndex === -1) {
+    return res.status(404).json({
+      mensaje: 'Pedido no encontrado'
+    });
+  }
+
+  pedidos.splice(pedidoIndex, 1);
+
+  res.status(200).json({
+    mensaje: 'Pedido eliminado correctamente'
+  });
+
+};
+
 // POST pedido
 const createPedido = (req, res) => {
 
@@ -111,5 +131,6 @@ module.exports = {
   getPedidos,
   createPedido,
   getPedidoById,
-  updatePedido
+  updatePedido,
+  deletePedido
 };

@@ -5,14 +5,17 @@ const {
   getPedidos,
   createPedido,
   getPedidoById,
-  updatePedido
+  updatePedido,
+  deletePedido
 } = require('../controllers/pedidos.controller');
 
 // RUTAS
 router.get('/', getPedidos);
 router.get('/:id', getPedidoById);
 router.put('/:id', updatePedido);
+router.delete('/:id', deletePedido);
 router.post('/', createPedido);
+
 
 
 
