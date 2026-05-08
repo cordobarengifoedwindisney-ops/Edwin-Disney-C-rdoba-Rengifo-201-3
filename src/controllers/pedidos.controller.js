@@ -1,15 +1,40 @@
 const pedidos = [];
 
-// GET /pedidos
+// GET pedidos
 const getPedidos = (req, res) => {
   res.status(200).json(pedidos);
 };
 
-// POST /pedidos
+// POST pedido
 const createPedido = (req, res) => {
+
+  const { cliente, producto, cantidad, total } = req.body;
+
+  // VALIDACIONES
+  if (!cliente || !producto || !cantidad || !total) {
+    return res.status(400).json({
+      error: 'Todos los campos son obligatorios'
+    });
+  }
+
+  if (cantidad <= 0) {
+    return res.status(400).json({
+      error: 'La cantidad debe ser mayor a 0'
+    });
+  }
+
+  if (total <= 0) {
+    return res.status(400).json({
+      error: 'El total debe ser mayor a 0'
+    });
+  }
+
   const nuevoPedido = {
     id: `ped-${Date.now()}`,
-    ...req.body
+    cliente,
+    producto,
+    cantidad,
+    total
   };
 
   pedidos.push(nuevoPedido);
@@ -18,6 +43,7 @@ const createPedido = (req, res) => {
     mensaje: 'Pedido creado correctamente',
     pedido: nuevoPedido
   });
+
 };
 
 module.exports = {
