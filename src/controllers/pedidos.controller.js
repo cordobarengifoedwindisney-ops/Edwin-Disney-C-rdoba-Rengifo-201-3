@@ -5,6 +5,21 @@ const getPedidos = (req, res) => {
   res.status(200).json(pedidos);
 };
 
+const getPedidoById = (req, res) => {
+
+  const { id } = req.params;
+
+  const pedido = pedidos.find(p => p.id === id);
+
+  if (!pedido) {
+    return res.status(404).json({
+      mensaje: 'Pedido no encontrado'
+    });
+  }
+
+  res.status(200).json(pedido);
+};
+
 // POST pedido
 const createPedido = (req, res) => {
 
@@ -48,5 +63,6 @@ const createPedido = (req, res) => {
 
 module.exports = {
   getPedidos,
-  createPedido
+  createPedido,
+  getPedidoById
 };
