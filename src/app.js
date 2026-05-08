@@ -12,9 +12,11 @@ app.get('/', (req, res) => {
 
 // IMPORTAR RUTAS
 const productosRouter = require('./routes/productos');
+const pedidosRoutes = require('./routes/pedidos');
 
 // USAR RUTAS
 app.use('/api/productos', productosRouter);
+app.use('/api/pedidos', pedidosRoutes);
 
 // Puerto
 const PORT = process.env.PORT || 3000;
