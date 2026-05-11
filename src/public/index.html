@@ -443,84 +443,95 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
 </div>
 
 <script>
-const PRODUCTOS=[
+const PRODUCTOS = [
+
+  // ───── BÁSICAS ─────
   {
     id:'prod-001',
-    nombre:'Void Star',
-    cat:'premium',
-    desc:'Camiseta premium 100% algodón pima.',
-    precio:89900,
-    stock:45,
-    img:'/img/img1.png'
-  },
-
-  {
-    id:'prod-002',
-    nombre:'Celestial Glow',
+    nombre:'West Fade',
     cat:'basicas',
-    desc:'Blanco inmaculado.',
-    precio:69900,
-    stock:80,
-    img:'/img/img2.png'
-  },
-
-  {
-    id:'prod-003',
-    nombre:'Royal Script',
-    cat:'edicion',
-    desc:'Edición limitada.',
-    precio:129900,
-    stock:12,
-    img:'/img/img3.png'
-  },
-
-  {
-    id:'prod-004',
-    nombre:'Olive Motion',
-    cat:'basicas',
-    desc:'Diseño urbano vintage.',
-    precio:74900,
+    desc:'Oversized esencial con gráfica varsity desgastada y efecto washed inspirado en el streetwear vintage de Los Ángeles.',
+    precio:84900,
     stock:60,
     img:'/img/img4.png'
   },
 
   {
-    id:'prod-005',
-    nombre:'Kind Soul',
+    id:'prod-002',
+    nombre:'Fade Vision',
+    cat:'basicas',
+    desc:'Diseño térmico abstracto con efecto artístico futurista.',
+    precio:119900,
+    stock:20,
+    img:'/img/img7.png'
+  },
+
+  {
+    id:'prod-003',
+    nombre:'Nova Heaven',
+    cat:'basicas',
+    desc:'Oversized blanca con gráfica celestial luminosa y detalles minimal inspirados en estética Y2K futurista.',
+    precio:79900,
+    stock:80,
+    img:'/img/img2.png'
+  },
+
+
+
+  // ───── PREMIUM ─────
+  {
+    id:'prod-004',
+    nombre:'Eclipse Nova',
     cat:'premium',
-    desc:'Inspiración streetwear retro.',
-    precio:99900,
+    desc:'Oversized negra con gráfica estelar futurista y acabado premium inspirado en streetwear nocturno contemporáneo.',
+    precio:94900,
+    stock:45,
+    img:'/img/img1.png'
+  },
+
+  {
+    id:'prod-005',
+    nombre:'Blue Remedy',
+    cat:'premium',
+    desc:'Camiseta oversized con estética retro universitaria, detalles contrastantes y gráfica handwritten inspirada en streetwear emocional contemporáneo.',
+    precio:109900,
     stock:30,
     img:'/img/img5.png'
   },
 
   {
     id:'prod-006',
-    nombre:'Purple Phantom',
-    cat:'edicion',
-    desc:'Tono violeta exclusivo.',
-    precio:119900,
+    nombre:'Noir Entity',
+    cat:'premium',
+    desc:'Oversized premium en tono violeta lavado con ilustración minimal darkwear y acabado soft-touch inspirado en streetwear futurista.',
+    precio:139900,
     stock:20,
     img:'/img/img6.png'
   },
-{
-  id:'prod-007',
-  nombre:'Fade Vision',
-  cat:'basicas',
-  desc:'Diseño térmico abstracto con efecto artístico futurista.',
-  precio:119900,
-  stock:20,
-  img:'/img/img7.png'
-},
+
+
+
+  // ───── EDICIÓN LIMITADA ─────
   {
-  id:'prod-008',
-  nombre:'Pink Mirage',
-  cat:'premium',
-  desc:'Diseño gráfico oversized con esencia Y2K y detalles artísticos únicos.',
-  precio:129900,
-  stock:15,
-  img:'/img/img8.png.jpeg'
-},
+    id:'prod-007',
+    nombre:'Azure Legacy',
+    cat:'edicion',
+    desc:'Oversized premium con tipografía gothic bold y estética Y2K inspirada en el streetwear exclusivo de colección.',
+    precio:134900,
+    stock:12,
+    img:'/img/img3.png'
+  },
+
+  {
+    id:'prod-008',
+    nombre:'Virtual Ink',
+    cat:'edicion',
+    desc:'Camiseta oversized con ilustración abstracta estilo brushstroke y acabado visual inspirado en streetwear contemporáneo japonés.',
+    precio:149900,
+    stock:15,
+    img:'/img/img8.png'
+  }
+
 ];
 let cart=[],currentProduct=null,selectedSize='S';
 const fmt=n=>'$'+Math.round(n).toLocaleString('es-CO');
