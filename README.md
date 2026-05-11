@@ -238,7 +238,8 @@ git push origin feat/setup-proyecto
 ---
 
 ## Autor
+EDWIN DISNEY CORDOBA RENGIFO
 
 Proyecto académico — ProvvTecno  
-Asignatura: Desarrollo de Aplicaciones Web  
+Asignatura: lenguajes de computacion para moviles
 Medellín, Colombia — 2026
