@@ -7,7 +7,7 @@ let productos = [
         descripcion: "Disfruta una experiencia refrescante y tropical con esta vela aromática de coco y hierbabuena. Su fragancia combina la suavidad dulce del coco con el toque fresco de la menta, creando un ambiente relajante, limpio y revitalizante. Perfecta para tu hogar, momentos de descanso o espacios de bienestar.",
         precio: 69000,
         stock: 18,
-        categoria: "Velas aromaticas 120gr ",
+        categoria:"Velas Aromaticas",
         activo: true
     }
     , 
@@ -17,7 +17,7 @@ id: "002",
         descripcion: "Llena tu espacio de calidez y dulzura con esta vela aromática de frutos rojos y vainilla. Su aroma mezcla notas frutales intensas con la suavidad cremosa de la vainilla, creando un ambiente acogedor, romántico y elegante. Ideal para relajarte o ambientar tus momentos especiales.",
         precio: 69000,
         stock: 14,
-        categoria: "Velas aromaticas 120gr ",
+        categoria:"Velas Aromaticas",
         activo: true
 
  }   
@@ -28,7 +28,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 2,
-        categoria: "Velas aromaticas 120gr ",
+        categoria:"Velas Aromaticas",
         activo: true
 } 
 , 
@@ -38,7 +38,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 13,
-        categoria: "Velas Aromaticas ",
+        categoria:"Velas Aromaticas",
         activo: true
 }
 ,
@@ -48,7 +48,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 22,
-        categoria: "Velas Aromaticas ",
+        categoria:"Velas Aromaticas",
         activo: true
 }
 ,
@@ -58,7 +58,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 8,
-        categoria: "Velas Aromaticas  ",
+        categoria:"Velas Aromaticas",
         activo: true
 }
 ,
@@ -68,7 +68,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 3,
-        categoria: "Velas Aromaticas ",
+        categoria:"Velas Aromaticas",
         activo: true
 }
 ,
@@ -78,7 +78,7 @@ id: "002",
         descripcion: "Disfruta una fragancia envolvente que combina la intensidad de los frutos rojos con la dulzura de la vainilla. Esta vela es perfecta para crear un ambiente cálido, armonioso y sofisticado en cualquier espacio de tu hogar.",
         precio: 69000,
         stock: 5,
-        categoria: "Velas Aromaticas ",
+        categoria:"Velas Aromaticas",
         activo: true
 }
 ,
