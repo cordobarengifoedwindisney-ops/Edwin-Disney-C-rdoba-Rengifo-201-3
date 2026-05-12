@@ -190,3 +190,8 @@ Ejemplo:
 # Autor
 
 Proyecto desarrollado por Jose Gabriel Agudelo Vargas.
+---
+
+# Referencias y apoyo
+
+Durante el desarrollo de este proyecto se consultó documentación oficial de Node.js y Express.js, además de utilizar herramientas de apoyo basadas en inteligencia artificial como ChatGPT de OpenAI para resolver dudas técnicas, comprender conceptos y reforzar el aprendizaje durante la implementación de la API REST.
