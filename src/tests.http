@@ -60,3 +60,17 @@ Content-Type: application/json
 
 ### GET consultar pago PSE (reemplaza TXN con la referencia que te devuelva)
 GET {{baseUrl}}/api/pagos-pse/TXN-123456
+
+### GET pedido por ID
+GET {{baseUrl}}/api/pedidos/ped-001
+
+### PUT actualizar pedido
+PUT {{baseUrl}}/api/pedidos/ped-001
+Content-Type: application/json
+
+{
+  "estado": "APROBADO"
+}
+
+### DELETE eliminar pedido
+DELETE {{baseUrl}}/api/pedidos/ped-001
