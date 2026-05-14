@@ -252,6 +252,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   <div class="nav-center">
     <a onclick="showPage('home')">Inicio</a>
     <a onclick="showPage('catalog')">Colección</a>
+    <a onclick="showPage('registro')">Registro</a>
     
   </div>
   <div class="nav-right">
@@ -276,6 +277,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
     <span class="bn-bubble" id="cartCountMobile">0</span>
     <span>Carrito</span>
   </button>
+  <button class="bn-item" id="bn-registro" onclick="showPage('registro');setBN('bn-registro')">
+  <i data-lucide="user" style="width:20px;height:20px;stroke-width:1.5;"></i>
+  <span>Registro</span>
+</button>
   <button class="bn-item" id="bn-pse" onclick="showPage('pse');setBN('bn-pse')">
     <i data-lucide="credit-card" style="width:20px;height:20px;stroke-width:1.5;"></i>
     <span>Pagar</span>
@@ -658,9 +663,115 @@ async function procesarPago(){
   cart=[];updateCartCount();
 }
 
+async function registrarPersona(){
+  const tipoDoc = document.getElementById('reg-tipoDoc').value;
+  const numDoc = document.getElementById('reg-numDoc').value.trim();
+  const nombres = document.getElementById('reg-nombres').value.trim();
+  const apellidos = document.getElementById('reg-apellidos').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const telefono = document.getElementById('reg-telefono').value.trim();
+  const ciudad = document.getElementById('reg-ciudad').value.trim();
+
+  if(!tipoDoc||!numDoc||!nombres||!apellidos||!email){
+    document.getElementById('reg-error-msg').textContent='Por favor completa todos los campos obligatorios.';
+    document.getElementById('reg-error').style.display='block';
+    return;
+  }
+
+  document.getElementById('reg-loading').classList.add('show');
+  document.getElementById('reg-success').classList.remove('show');
+  document.getElementById('reg-error').style.display='none';
+
+  try{
+    const res = await fetch('/api/personas',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({tipoDoc,numDoc,nombres,apellidos,email,telefono,ciudad})
+    });
+    const data = await res.json();
+    if(res.status===409){
+      document.getElementById('reg-error-msg').textContent='Ya existe una cuenta con ese documento o correo.';
+      document.getElementById('reg-error').style.display='block';
+      document.getElementById('reg-loading').classList.remove('show');
+      return;
+    }
+    document.getElementById('reg-id').textContent='ID de cliente: '+data.id;
+    document.getElementById('reg-success').classList.add('show');
+  }catch(e){
+    document.getElementById('reg-error-msg').textContent='Error al conectar con el servidor.';
+    document.getElementById('reg-error').style.display='block';
+  }
+  document.getElementById('reg-loading').classList.remove('show');
+}
+
 renderHome();
 lucide.createIcons();
 </script>
+<!-- REGISTRO -->
+<div id="registro" class="page">
+  <div class="pse-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Volver al inicio</button>
+    <h1>Registro</h1>
+    <p class="pse-sub-title">Crea tu cuenta en T'essence</p>
+
+    <div class="f-grid">
+      <div class="fg">
+        <label>Tipo de Documento</label>
+        <select id="reg-tipoDoc">
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="CE">Cédula Extranjería</option>
+          <option value="NIT">NIT</option>
+          <option value="PA">Pasaporte</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Número de Documento</label>
+        <input type="text" id="reg-numDoc" placeholder="1023456789">
+      </div>
+      <div class="fg">
+        <label>Nombres</label>
+        <input type="text" id="reg-nombres" placeholder="Tu nombre">
+      </div>
+      <div class="fg">
+        <label>Apellidos</label>
+        <input type="text" id="reg-apellidos" placeholder="Tu apellido">
+      </div>
+      <div class="fg f-full">
+        <label>Correo Electrónico</label>
+        <input type="email" id="reg-email" placeholder="correo@ejemplo.com">
+      </div>
+      <div class="fg">
+        <label>Teléfono</label>
+        <input type="text" id="reg-telefono" placeholder="+573001234567">
+      </div>
+      <div class="fg">
+        <label>Ciudad</label>
+        <input type="text" id="reg-ciudad" placeholder="Medellín">
+      </div>
+    </div>
+
+    <button class="confirm-btn" onclick="registrarPersona()">Crear cuenta</button>
+
+    <div id="reg-loading" class="pse-loading">Registrando...</div>
+
+    <div id="reg-success" class="pse-success">
+      <h3>Registro exitoso</h3>
+      <p>Tu cuenta ha sido creada correctamente.</p>
+      <div class="txn-ref" id="reg-id"></div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-outline" style="color:#fff;border-color:#444;" onclick="showPage('catalog')">Explorar colección</button>
+      </div>
+    </div>
+
+    <div id="reg-error" style="display:none;margin-top:1rem;background:#c0392b;padding:1.5rem;">
+      <p style="font-size:0.6rem;letter-spacing:0.1em;color:#fff;" id="reg-error-msg"></p>
+    </div>
+
+    <p style="font-size:0.45rem;letter-spacing:0.1em;color:var(--gray);text-align:center;margin-top:1.5rem;line-height:1.8;">
+      Tus datos están protegidos bajo la Ley 1581 de 2012 — Habeas Data
+    </p>
+  </div>
+</div>
 <footer style="background:var(--black);color:var(--white);padding:3rem;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
   <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:0.25em;margin-bottom:1rem;">T<span style="color:var(--gold);">'</span>essence</div>
   <div style="font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;color:#666;margin-bottom:0.8rem;">Viste tu esencia</div>
