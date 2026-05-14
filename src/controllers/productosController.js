@@ -4,10 +4,12 @@ const getProductos = (req, res) => {
   res.json(productos);
 };
 
-const getProductoById = (req, res) => {
-  const producto = productos.find(p => p.id === req.params.id);
-  if (!producto) return res.status(404).json({ mensaje: "Producto no encontrado" });
-  res.json(producto);
+const getProductos = (req, res) => {
+  let lista = productos;
+  if (req.query.categoria) {
+    lista = lista.filter(p => p.categoria === req.query.categoria);
+  }
+  res.json(lista);
 };
 
 const createProducto = (req, res) => {

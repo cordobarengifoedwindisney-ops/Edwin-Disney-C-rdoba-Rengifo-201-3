@@ -4,10 +4,12 @@ const getPedidos = (req, res) => {
   res.json(pedidos);
 };
 
-const getPedidoById = (req, res) => {
-  const pedido = pedidos.find(p => p.id === req.params.id);
-  if (!pedido) return res.status(404).json({ mensaje: "Pedido no encontrado" });
-  res.json(pedido);
+const getPedidos = (req, res) => {
+  let lista = pedidos;
+  if (req.query.estado) {
+    lista = lista.filter(p => p.estado === req.query.estado);
+  }
+  res.json(lista);
 };
 
 const createPedido = (req, res) => {

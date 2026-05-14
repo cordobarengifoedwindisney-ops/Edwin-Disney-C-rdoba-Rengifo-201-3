@@ -41,5 +41,15 @@ const consultarPago = (req, res) => {
   if (!pago) return res.status(404).json({ mensaje: "Transacción no encontrada" });
   res.json(pago);
 };
+const actualizarEstadoPago = (req, res) => {
+  const pago = pagos.find(p => p.referencia === req.params.ref);
+  if (!pago) return res.status(404).json({ mensaje: "Transacción no encontrada" });
+  const { estado } = req.body;
+  if (!["APROBADO", "RECHAZADO"].includes(estado)) {
+    return res.status(400).json({ mensaje: "Estado debe ser APROBADO o RECHAZADO" });
+  }
+  pago.estado = estado;
+  res.json(pago);
+};
+module.exports = { crearPago, consultarPago, actualizarEstadoPago };
 
-module.exports = { crearPago, consultarPago };

@@ -10,10 +10,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const productosRouter = require('./routes/productos');
 const pedidosRouter = require('./routes/pedidos');
 const pseRouter = require('./routes/pagos');
+const personasRouter = require('./routes/personas');
 
 app.use('/api/productos', productosRouter);
 app.use('/api/pedidos', pedidosRouter);
 app.use('/api/pagos-pse', pseRouter);
+app.use('/api/personas', personasRouter);
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
