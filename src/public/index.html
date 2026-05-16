@@ -653,11 +653,36 @@ async function procesarPago(){
   document.getElementById('pseLoading').classList.add('show');
   document.getElementById('pseSuccess').classList.remove('show');
   try{
-    const res=await fetch('/api/pagos-pse',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({banco_codigo:document.getElementById('banco').value,tipo_persona:document.getElementById('tipoPer').value,tipo_documento:document.getElementById('tipoDoc').value,numero_documento:numDoc,monto,descripcion:"Compra T'essence",url_respuesta:'https://tessence.co/pagos/respuesta'})});
+    // 1. Crear el pedido en la API
+    await fetch('/api/pedidos',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        cliente: nombre,
+        productos: cart.map(c=>c.id),
+        total: monto
+      })
+    });
+
+    // 2. Procesar el pago PSE
+    const res=await fetch('/api/pagos-pse',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        banco_codigo:document.getElementById('banco').value,
+        tipo_persona:document.getElementById('tipoPer').value,
+        tipo_documento:document.getElementById('tipoDoc').value,
+        numero_documento:numDoc,
+        monto,
+        descripcion:"Compra T'essence — "+cart.map(c=>c.nombre).join(', '),
+        url_respuesta:'https://tessence.co/pagos/respuesta'
+      })
+    });
     const data=await res.json();
     document.getElementById('txnRef').textContent='Referencia: '+data.referencia;
-  }catch(e){document.getElementById('txnRef').textContent='Referencia: TXN-'+Date.now();}
+  }catch(e){
+    document.getElementById('txnRef').textContent='Referencia: TXN-'+Date.now();
+  }
   document.getElementById('pseLoading').classList.remove('show');
   document.getElementById('pseSuccess').classList.add('show');
   cart=[];updateCartCount();
