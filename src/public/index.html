@@ -26,10 +26,10 @@ body{background:var(--bg);font-family:Helvetica,Arial,sans-serif;font-weight:300
 nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:var(--nav-h);background:var(--bg);border-bottom:1px solid rgba(0,0,0,0.07);}
 .logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;letter-spacing:0.25em;color:var(--black);cursor:pointer;}
 .logo span{color:var(--gold);}
-.nav-center{display:flex;gap:2rem;}
+.nav-center{display:flex;gap:2rem;align-items:center;}
 .nav-center a{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gray);cursor:pointer;transition:color 0.2s;}
 .nav-center a:hover{color:var(--black);}
-.nav-right{display:flex;align-items:center;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
 .cart-trigger{display:flex;align-items:center;gap:0.5rem;font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--black);cursor:pointer;background:none;border:none;font-family:inherit;font-weight:300;}
 .cart-bubble{width:18px;height:18px;border-radius:50%;background:var(--gold);color:var(--white);font-size:0.5rem;display:flex;align-items:center;justify-content:center;}
 
@@ -171,6 +171,43 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
 .txn-ref{color:var(--white);margin-top:0.8rem;font-family:'Cormorant Garamond',serif;font-size:1rem;}
 .estado{color:var(--gold);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;margin-top:0.8rem;display:block;}
 
+/* PASSWORD INPUT */
+.pass-wrap{position:relative;}
+.pass-wrap input{width:100%;padding-right:2.5rem;}
+.pass-eye{position:absolute;right:0.8rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gray);display:flex;align-items:center;}
+.pass-eye:hover{color:var(--black);}
+
+/* GUEST NOTE */
+.guest-note{background:var(--light);padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:0.58rem;letter-spacing:0.1em;color:var(--gray);line-height:1.8;}
+.guest-note span{color:var(--gold);cursor:pointer;}
+
+/* PERFIL */
+#perfil{padding-top:var(--nav-h);}
+.perfil-wrap{max-width:800px;margin:0 auto;padding:3.5rem 2rem;}
+.perfil-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(0,0,0,0.06);}
+.perfil-header h1{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;}
+.perfil-avatar{width:60px;height:60px;border-radius:50%;background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;flex-shrink:0;}
+.perfil-section{margin-bottom:2.5rem;}
+.perfil-section h2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid rgba(0,0,0,0.06);}
+.perfil-info{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.perfil-field{display:flex;flex-direction:column;gap:0.3rem;}
+.perfil-field label{font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gray);}
+.perfil-field span{font-size:0.75rem;letter-spacing:0.05em;color:var(--black);}
+.perfil-compra{display:grid;grid-template-columns:70px 1fr auto;gap:1rem;padding:1rem 0;border-bottom:1px solid rgba(0,0,0,0.06);align-items:center;}
+.perfil-compra-img{width:70px;height:70px;overflow:hidden;background:var(--light);}
+.perfil-compra-img img{width:100%;height:100%;object-fit:cover;}
+.perfil-compra-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;margin-bottom:0.2rem;}
+.perfil-compra-meta{font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gray);}
+.perfil-compra-price{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--gold);white-space:nowrap;}
+.perfil-empty{font-size:0.65rem;letter-spacing:0.1em;color:var(--gray);padding:1.5rem 0;}
+.btn-cerrar{background:none;border:1px solid rgba(0,0,0,0.15);color:var(--gray);padding:0.6rem 1.5rem;font-family:inherit;font-weight:300;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.btn-cerrar:hover{border-color:var(--black);color:var(--black);}
+
+/* NOTIFICACION */
+.notif{position:fixed;top:calc(var(--nav-h)+1rem);right:1.5rem;z-index:2000;background:var(--black);color:var(--white);padding:1rem 1.5rem;font-size:0.58rem;letter-spacing:0.15em;opacity:0;transform:translateY(-10px);transition:all 0.4s ease;pointer-events:none;}
+.notif.show{opacity:1;transform:translateY(0);}
+.notif span{color:var(--gold);}
+
 /* ═══ TABLET ═══ */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;}
@@ -189,6 +226,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   .catalog-header{flex-direction:column;align-items:flex-start;}
   nav{padding:0 1.5rem;}
   .home-collection{padding:3rem 1.5rem;}
+  .perfil-info{grid-template-columns:1fr;}
 }
 
 /* ═══ MOBILE ═══ */
@@ -197,7 +235,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   .nav-center{display:none;}
   .nav-right{display:none;}
   .bottom-nav{display:flex;}
-  #home,#catalog,#detail,#cart,#pse{padding-bottom:calc(var(--bottom-h) + 0.5rem);}
+  #home,#catalog,#detail,#cart,#pse,#perfil,#registro,#login{padding-bottom:calc(var(--bottom-h) + 0.5rem);}
   nav{padding:0 1.2rem;}
   .logo{font-size:1.2rem;}
   .hero{grid-template-columns:1fr;min-height:auto;}
@@ -242,18 +280,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   .filters{flex-wrap:nowrap;overflow-x:auto;padding-bottom:0.4rem;}
   .filters::-webkit-scrollbar{height:2px;}
   .filter{white-space:nowrap;flex-shrink:0;}
+  .perfil-header{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .perfil-compra{grid-template-columns:60px 1fr auto;}
+  .perfil-compra-img{width:60px;height:60px;}
 }
 </style>
 </head>
 <body>
+
+<div class="notif" id="notif"></div>
 
 <nav>
   <div class="logo" onclick="showPage('home')">T<span>'</span>essence</div>
   <div class="nav-center">
     <a onclick="showPage('home')">Inicio</a>
     <a onclick="showPage('catalog')">Colección</a>
-    <a onclick="showPage('registro')">Registro</a>
-    
+    <a onclick="showPage('registro')" id="nav-registro-link">Registro</a>
+    <a onclick="showPage('login')" id="nav-login-link">Iniciar sesión</a>
+    <a onclick="showPage('perfil')" id="nav-perfil-link" style="display:none;color:var(--gold);">Mi perfil</a>
   </div>
   <div class="nav-right">
     <button class="cart-trigger" onclick="showPage('cart')">
@@ -277,10 +321,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
     <span class="bn-bubble" id="cartCountMobile">0</span>
     <span>Carrito</span>
   </button>
-  <button class="bn-item" id="bn-registro" onclick="showPage('registro');setBN('bn-registro')">
-  <i data-lucide="user" style="width:20px;height:20px;stroke-width:1.5;"></i>
-  <span>Registro</span>
-</button>
+  <button class="bn-item" id="bn-cuenta" onclick="irACuenta();setBN('bn-cuenta')">
+    <i data-lucide="user" style="width:20px;height:20px;stroke-width:1.5;"></i>
+    <span>Cuenta</span>
+  </button>
   <button class="bn-item" id="bn-pse" onclick="showPage('pse');setBN('bn-pse')">
     <i data-lucide="credit-card" style="width:20px;height:20px;stroke-width:1.5;"></i>
     <span>Pagar</span>
@@ -305,7 +349,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   <div class="stats-bar">
     <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Algodón Premium</div></div>
     <div class="stat"><div class="stat-num">Hecho</div><div class="stat-label">En Colombia</div></div>
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Piezas Exclusivas</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Piezas Exclusivas</div></div>
     <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Estilo Atemporal</div></div>
   </div>
   <div class="home-collection">
@@ -318,13 +362,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   </div>
 </div>
 
-<!-- CATALOGO -->
+<!-- CATALOG -->
 <div id="catalog" class="page">
   <div class="catalog-header">
     <div class="catalog-header-left">
       <div class="section-label">T'essence</div>
       <h1>Colección 2026</h1>
-      <p id="catalogCount">6 piezas disponibles</p>
+      <p id="catalogCount">8 piezas disponibles</p>
     </div>
     <div class="filters">
       <button class="filter active" onclick="filterCat('all',this)">Todos</button>
@@ -393,6 +437,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
     <button class="back-btn" onclick="showPage('cart')">← Volver al carrito</button>
     <h1>Pago PSE</h1>
     <p class="pse-sub-title">Pasarela Segura · ACH Colombia</p>
+
+    <!-- Nota sesion/invitado -->
+    <div id="pse-guest-note" class="guest-note" style="display:none;">
+      Compras como <strong>invitado</strong>. <span onclick="showPage('login')">Inicia sesión</span> para autocompletar tus datos.
+    </div>
+    <div id="pse-user-note" class="guest-note" style="display:none;background:#f0ece6;">
+      Datos cargados desde tu cuenta. Puedes modificarlos si lo deseas.
+    </div>
+
     <div class="pse-amount-box">
       <span>Total a pagar</span>
       <span id="pseAmt">$0</span>
@@ -412,7 +465,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
       </div>
       <div class="fg">
         <label>Número de Documento</label>
-        <input type="text" id="numDoc" placeholder="1234567890">
+        <input type="text" id="numDoc" placeholder="1234567890" maxlength="10" minlength="6" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
       </div>
       <div class="fg">
         <label>Banco</label>
@@ -425,12 +478,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
         </select>
       </div>
       <div class="fg f-full">
-        <label>Nombre Completo</label>
-        <input type="text" id="nombreCliente" placeholder="Tu nombre completo">
+        <label>Nombre</label>
+        <input type="text" id="nombreCliente" placeholder="Tu nombre" maxlength="60" oninput="this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')">
       </div>
       <div class="fg f-full">
         <label>Correo Electrónico</label>
-        <input type="email" id="emailCliente" placeholder="correo@ejemplo.com">
+        <input type="email" id="emailCliente" placeholder="correo@ejemplo.com" maxlength="50">
       </div>
     </div>
     <button class="confirm-btn" onclick="procesarPago()">Confirmar Pago</button>
@@ -447,102 +500,337 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-conten
   </div>
 </div>
 
+<!-- PERFIL -->
+<div id="perfil" class="page">
+  <div class="perfil-wrap">
+    <div class="perfil-header">
+      <div>
+        <div class="section-label">Mi cuenta</div>
+        <h1 id="perfil-titulo">Bienvenida</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <div class="perfil-avatar" id="perfil-avatar">T</div>
+        <button class="btn-cerrar" onclick="cerrarSesion()">Cerrar sesión</button>
+      </div>
+    </div>
+    <div class="perfil-section">
+      <h2>Mis datos</h2>
+      <div class="perfil-info">
+        <div class="perfil-field"><label>Nombre</label><span id="perfil-nombres">—</span></div>
+        <div class="perfil-field"><label>Apellidos</label><span id="perfil-apellidos">—</span></div>
+        <div class="perfil-field"><label>Documento</label><span id="perfil-doc">—</span></div>
+        <div class="perfil-field"><label>Ciudad</label><span id="perfil-ciudad">—</span></div>
+        <div class="perfil-field" style="grid-column:1/-1;"><label>Correo</label><span id="perfil-email">—</span></div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <div class="section-label" style="margin-bottom:0.8rem;">Cambiar nombre</div>
+        <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+          <input type="text" id="nuevo-nombre" placeholder="Nuevo nombre" maxlength="40"
+            style="border:1px solid var(--light);padding:0.7rem 1rem;font-family:inherit;font-size:0.7rem;outline:none;flex:1;min-width:180px;background:var(--white);"
+            oninput="this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')">
+          <button class="btn btn-dark" onclick="cambiarNombre()" style="padding:0.7rem 1.5rem;">Guardar</button>
+        </div>
+      </div>
+    </div>
+    <div class="perfil-section">
+      <h2>Mi carrito actual</h2>
+      <div id="perfil-carrito"><p class="perfil-empty">Tu carrito está vacío.</p></div>
+    </div>
+    <div class="perfil-section">
+      <h2>Historial de mis compras</h2>
+      <div id="perfil-compras"><p class="perfil-empty">Aún no tienes compras registradas.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="page">
+  <div class="pse-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Volver al inicio</button>
+    <h1>Iniciar sesión</h1>
+    <p class="pse-sub-title">Accede a tu cuenta T'essence</p>
+    <div class="f-grid">
+      <div class="fg f-full">
+        <label>Correo Electrónico</label>
+        <input type="email" id="login-email" placeholder="correo@ejemplo.com" maxlength="50" autocomplete="off">
+      </div>
+      <div class="fg f-full">
+        <label>Contraseña</label>
+        <div class="pass-wrap">
+          <input type="password" id="login-password" placeholder="Tu contraseña" maxlength="30" autocomplete="new-password">
+          <button class="pass-eye" type="button" onclick="togglePass('login-password','eye-login')">
+            <i data-lucide="eye" id="eye-login" style="width:16px;height:16px;stroke-width:1.5;"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="confirm-btn" onclick="iniciarSesion()">Ingresar</button>
+    <div id="login-error" style="display:none;margin-top:1rem;background:#c0392b;padding:1.5rem;">
+      <p style="font-size:0.6rem;letter-spacing:0.1em;color:#fff;" id="login-error-msg"></p>
+    </div>
+    <p style="font-size:0.55rem;letter-spacing:0.12em;color:var(--gray);text-align:center;margin-top:2rem;">
+      ¿No tienes cuenta?
+      <span onclick="showPage('registro')" style="color:var(--gold);cursor:pointer;">Regístrate aquí</span>
+    </p>
+  </div>
+</div>
+
+<!-- REGISTRO -->
+<div id="registro" class="page">
+  <div class="pse-wrap">
+    <button class="back-btn" onclick="showPage('home')">← Volver al inicio</button>
+    <h1>Registro</h1>
+    <p class="pse-sub-title">Crea tu cuenta en T'essence</p>
+    <div class="f-grid">
+      <div class="fg">
+        <label>Tipo de Documento</label>
+        <select id="reg-tipoDoc">
+          <option value="CC">Cédula de Ciudadanía</option>
+          <option value="CE">Cédula Extranjería</option>
+          <option value="NIT">NIT</option>
+          <option value="PA">Pasaporte</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Número de Documento</label>
+        <input type="text" id="reg-numDoc" placeholder="1023456789" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+      </div>
+      <div class="fg">
+        <label>Nombre</label>
+        <input type="text" id="reg-nombres" placeholder="Tu nombre" maxlength="40" oninput="this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')">
+      </div>
+      <div class="fg">
+        <label>Apellidos</label>
+        <input type="text" id="reg-apellidos" placeholder="Tu apellido" maxlength="40" oninput="this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')">
+      </div>
+      <div class="fg f-full">
+        <label>Correo Electrónico</label>
+        <input type="email" id="reg-email" placeholder="correo@ejemplo.com" maxlength="50" autocomplete="off">
+      </div>
+      <div class="fg f-full">
+        <label>Contraseña</label>
+        <div class="pass-wrap">
+          <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" maxlength="30" autocomplete="new-password">
+          <button class="pass-eye" type="button" onclick="togglePass('reg-password','eye-reg')">
+            <i data-lucide="eye" id="eye-reg" style="width:16px;height:16px;stroke-width:1.5;"></i>
+          </button>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Teléfono</label>
+        <input type="text" id="reg-telefono" placeholder="+573001234567" maxlength="13" oninput="this.value=this.value.replace(/[^0-9+]/g,'')">
+      </div>
+      <div class="fg">
+        <label>Ciudad</label>
+        <input type="text" id="reg-ciudad" placeholder="Medellín" maxlength="30" oninput="this.value=this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g,'')">
+      </div>
+    </div>
+    <button class="confirm-btn" onclick="registrarPersona()">Crear cuenta</button>
+    <div id="reg-loading" class="pse-loading">Registrando...</div>
+    <div id="reg-success" class="pse-success">
+      <h3>Registro exitoso</h3>
+      <p>Tu cuenta ha sido creada. Ya puedes explorar la colección.</p>
+      <div class="txn-ref" id="reg-id"></div>
+      <div style="margin-top:1.5rem;">
+        <button class="btn btn-outline" style="color:#fff;border-color:#444;" onclick="showPage('perfil')">Ver mi perfil</button>
+      </div>
+    </div>
+    <div id="reg-error" style="display:none;margin-top:1rem;background:#c0392b;padding:1.5rem;">
+      <p style="font-size:0.6rem;letter-spacing:0.1em;color:#fff;" id="reg-error-msg"></p>
+    </div>
+    <p style="font-size:0.45rem;letter-spacing:0.1em;color:var(--gray);text-align:center;margin-top:1.5rem;line-height:1.8;">
+      Tus datos están protegidos bajo la Ley 1581 de 2012 — Habeas Data
+    </p>
+    <p style="font-size:0.55rem;letter-spacing:0.12em;color:var(--gray);text-align:center;margin-top:1rem;">
+      ¿Ya tienes cuenta?
+      <span onclick="showPage('login')" style="color:var(--gold);cursor:pointer;">Inicia sesión</span>
+    </p>
+  </div>
+</div>
+
+<footer style="background:var(--black);color:var(--white);padding:3rem;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:0.25em;margin-bottom:1rem;">T<span style="color:var(--gold);">'</span>essence</div>
+  <div style="font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;color:#666;margin-bottom:0.8rem;">Viste tu esencia</div>
+  <div style="width:40px;height:1px;background:var(--gold);margin:1.2rem auto;"></div>
+  <div style="font-size:0.48rem;letter-spacing:0.15em;color:#555;line-height:2;">
+    &copy; 2026 T'essence — Todos los derechos reservados<br>
+    Comercio electrónico regulado por Ley 527 de 1999 &nbsp;·&nbsp; Protección de datos Ley 1581 de 2012 &nbsp;·&nbsp; Habeas Data
+  </div>
+  <div style="width:40px;height:1px;background:#333;margin:1.2rem auto;"></div>
+  <div style="font-size:0.45rem;letter-spacing:0.2em;text-transform:uppercase;color:#444;">
+    Desarrollado por Valentina Arias · Ingeniería de Software · FUMC 2026
+  </div>
+</footer>
+
 <script>
-const PRODUCTOS = [
-
-  // ───── BÁSICAS ─────
-  {
-    id:'prod-001',
-    nombre:'West Fade',
-    cat:'basicas',
-    desc:'Oversized esencial con gráfica varsity desgastada y efecto washed inspirado en el streetwear vintage de Los Ángeles.',
-    precio:84900,
-    stock:60,
-    img:'/img/img4.png'
-  },
-
-  {
-    id:'prod-002',
-    nombre:'Fade Vision',
-    cat:'basicas',
-    desc:'Diseño térmico abstracto con efecto artístico futurista.',
-    precio:119900,
-    stock:20,
-    img:'/img/img7.png'
-  },
-
-  {
-    id:'prod-003',
-    nombre:'Nova Heaven',
-    cat:'basicas',
-    desc:'Oversized blanca con gráfica celestial luminosa y detalles minimal inspirados en estética Y2K futurista.',
-    precio:79900,
-    stock:80,
-    img:'/img/img2.png'
-  },
-
-
-
-  // ───── PREMIUM ─────
-  {
-    id:'prod-004',
-    nombre:'Eclipse Nova',
-    cat:'premium',
-    desc:'Oversized negra con gráfica estelar futurista y acabado premium inspirado en streetwear nocturno contemporáneo.',
-    precio:94900,
-    stock:45,
-    img:'/img/img1.png'
-  },
-
-  {
-    id:'prod-005',
-    nombre:'Blue Remedy',
-    cat:'premium',
-    desc:'Camiseta oversized con estética retro universitaria, detalles contrastantes y gráfica handwritten inspirada en streetwear emocional contemporáneo.',
-    precio:109900,
-    stock:30,
-    img:'/img/img5.png'
-  },
-
-  {
-    id:'prod-006',
-    nombre:'Noir Entity',
-    cat:'premium',
-    desc:'Oversized premium en tono violeta lavado con ilustración minimal darkwear y acabado soft-touch inspirado en streetwear futurista.',
-    precio:139900,
-    stock:20,
-    img:'/img/img6.png'
-  },
-
-
-
-  // ───── EDICIÓN LIMITADA ─────
-  {
-    id:'prod-007',
-    nombre:'Azure Legacy',
-    cat:'edicion',
-    desc:'Oversized premium con tipografía gothic bold y estética Y2K inspirada en el streetwear exclusivo de colección.',
-    precio:134900,
-    stock:12,
-    img:'/img/img3.png'
-  },
-
-  {
-    id:'prod-008',
-    nombre:'Virtual Ink',
-    cat:'edicion',
-    desc:'Camiseta oversized con ilustración abstracta estilo brushstroke y acabado visual inspirado en streetwear contemporáneo japonés.',
-    precio:149900,
-    stock:15,
-    img:'/img/img8.png'
-  }
-
+const PRODUCTOS=[
+  {id:'prod-001',nombre:'West Fade',cat:'basicas',desc:'Oversized esencial con gráfica varsity desgastada y efecto washed inspirado en el streetwear vintage de Los Ángeles.',precio:84900,stock:60,img:'/img/img4.png'},
+  {id:'prod-002',nombre:'Fade Vision',cat:'basicas',desc:'Diseño térmico abstracto con efecto artístico futurista.',precio:119900,stock:20,img:'/img/img7.png'},
+  {id:'prod-003',nombre:'Nova Heaven',cat:'basicas',desc:'Oversized blanca con gráfica celestial luminosa y detalles minimal inspirados en estética Y2K futurista.',precio:79900,stock:80,img:'/img/img2.png'},
+  {id:'prod-004',nombre:'Eclipse Nova',cat:'premium',desc:'Oversized negra con gráfica estelar futurista y acabado premium inspirado en streetwear nocturno contemporáneo.',precio:94900,stock:45,img:'/img/img1.png'},
+  {id:'prod-005',nombre:'Blue Remedy',cat:'premium',desc:'Camiseta oversized con estética retro universitaria, detalles contrastantes y gráfica handwritten.',precio:109900,stock:30,img:'/img/img5.png'},
+  {id:'prod-006',nombre:'Noir Entity',cat:'premium',desc:'Oversized premium en tono violeta lavado con ilustración minimal darkwear.',precio:139900,stock:20,img:'/img/img6.png'},
+  {id:'prod-007',nombre:'Azure Legacy',cat:'edicion',desc:'Oversized premium con tipografía gothic bold y estética Y2K.',precio:134900,stock:12,img:'/img/img3.png'},
+  {id:'prod-008',nombre:'Virtual Ink',cat:'edicion',desc:'Camiseta oversized con ilustración abstracta estilo brushstroke.',precio:149900,stock:15,img:'/img/img8.png'}
 ];
-let cart=[],currentProduct=null,selectedSize='S';
+
+// ═══ ESTADO GLOBAL ═══
+let cart=[], currentProduct=null, selectedSize='S';
+let usuarioActual=null, misCompras=[];
+
 const fmt=n=>'$'+Math.round(n).toLocaleString('es-CO');
 const catLabel=c=>c==='basicas'?'Básicas':c==='premium'?'Premium':'Edición Limitada';
 const getTotal=()=>cart.reduce((a,c)=>a+c.precio*c.qty,0);
 
+// ═══ NOTIFICACION ═══
+function mostrarNotif(msg){
+  const n=document.getElementById('notif');
+  n.innerHTML=msg;n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),3500);
+}
+
+// ═══ TOGGLE PASSWORD ═══
+function togglePass(inputId, iconId){
+  const input=document.getElementById(inputId);
+  const icon=document.getElementById(iconId);
+  if(input.type==='password'){
+    input.type='text';
+    icon.setAttribute('data-lucide','eye-off');
+  } else {
+    input.type='password';
+    icon.setAttribute('data-lucide','eye');
+  }
+  lucide.createIcons();
+}
+
+// ═══ SESION ═══
+function activarSesion(persona){
+  usuarioActual=persona;
+  document.getElementById('nav-registro-link').style.display='none';
+  document.getElementById('nav-login-link').style.display='none';
+  document.getElementById('nav-perfil-link').style.display='';
+}
+
+function cerrarSesion(){
+  // Solo guarda compras, borra todo lo demás
+  usuarioActual=null;
+  // NO borramos misCompras para mantener historial
+  document.getElementById('nav-registro-link').style.display='';
+  document.getElementById('nav-login-link').style.display='';
+  document.getElementById('nav-perfil-link').style.display='none';
+  // Limpiar formularios
+  limpiarFormLogin();
+  limpiarFormRegistro();
+  mostrarNotif('Sesion cerrada. <span>Hasta pronto!</span>');
+  showPage('home');
+}
+
+function limpiarFormLogin(){
+  const e=document.getElementById('login-email');
+  const p=document.getElementById('login-password');
+  if(e)e.value='';
+  if(p){p.value='';p.type='password';}
+  const err=document.getElementById('login-error');
+  if(err)err.style.display='none';
+  const icon=document.getElementById('eye-login');
+  if(icon)icon.setAttribute('data-lucide','eye');
+  lucide.createIcons();
+}
+
+function limpiarFormRegistro(){
+  ['reg-numDoc','reg-nombres','reg-apellidos','reg-email','reg-password','reg-telefono','reg-ciudad'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el){el.value='';if(el.type==='password')el.type='password';}
+  });
+  const err=document.getElementById('reg-error');
+  if(err)err.style.display='none';
+  const suc=document.getElementById('reg-success');
+  if(suc)suc.classList.remove('show');
+  const icon=document.getElementById('eye-reg');
+  if(icon)icon.setAttribute('data-lucide','eye');
+  lucide.createIcons();
+}
+
+function irACuenta(){
+  if(usuarioActual) showPage('perfil');
+  else showPage('login');
+}
+
+function cambiarNombre(){
+  const nuevo=document.getElementById('nuevo-nombre').value.trim();
+  if(!nuevo||nuevo.length<2){alert('Ingresa un nombre válido.');return;}
+  usuarioActual.nombres=nuevo;
+  document.getElementById('perfil-nombres').textContent=nuevo;
+  document.getElementById('perfil-titulo').textContent='Hola, '+nuevo;
+  document.getElementById('perfil-avatar').textContent=nuevo[0].toUpperCase();
+  document.getElementById('nuevo-nombre').value='';
+  mostrarNotif('Nombre actualizado a <span>'+nuevo+'</span>');
+}
+
+function renderPerfil(){
+  if(!usuarioActual)return;
+  document.getElementById('perfil-titulo').textContent='Hola, '+usuarioActual.nombres;
+  document.getElementById('perfil-avatar').textContent=usuarioActual.nombres[0].toUpperCase();
+  document.getElementById('perfil-nombres').textContent=usuarioActual.nombres;
+  document.getElementById('perfil-apellidos').textContent=usuarioActual.apellidos;
+  document.getElementById('perfil-doc').textContent=usuarioActual.tipoDoc+' ****'+usuarioActual.numDoc.slice(-4);
+  document.getElementById('perfil-ciudad').textContent=usuarioActual.ciudad||'—';
+  document.getElementById('perfil-email').textContent=usuarioActual.email;
+
+  // Carrito actual
+  const carritoEl=document.getElementById('perfil-carrito');
+  carritoEl.innerHTML=cart.length===0
+    ?'<p class="perfil-empty">Tu carrito está vacío.</p>'
+    :cart.map(c=>`
+      <div class="perfil-compra">
+        <div class="perfil-compra-img"><img src="${c.img}" alt="${c.nombre}"></div>
+        <div><div class="perfil-compra-name">${c.nombre}</div>
+        <div class="perfil-compra-meta">Talla ${c.size} · Qty ${c.qty}</div></div>
+        <div class="perfil-compra-price">${fmt(c.precio*c.qty)}</div>
+      </div>`).join('');
+
+  // Compras realizadas
+  const comprasEl=document.getElementById('perfil-compras');
+  comprasEl.innerHTML=misCompras.length===0
+    ?'<p class="perfil-empty">Aún no tienes compras registradas.</p>'
+    :misCompras.map(c=>`
+      <div class="perfil-compra">
+        <div class="perfil-compra-img"><img src="${c.img}" alt="${c.nombre}"></div>
+        <div><div class="perfil-compra-name">${c.nombre}</div>
+        <div class="perfil-compra-meta">Talla ${c.size} · Qty ${c.qty}</div></div>
+        <div class="perfil-compra-price">${fmt(c.precio*c.qty)}</div>
+      </div>`).join('');
+}
+
+// ═══ AUTOCOMPLETAR PSE ═══
+function autocompletarPSE(){
+  // Limpiar siempre primero
+  document.getElementById('numDoc').value='';
+  document.getElementById('nombreCliente').value='';
+  document.getElementById('emailCliente').value='';
+
+  const guestNote=document.getElementById('pse-guest-note');
+  const userNote=document.getElementById('pse-user-note');
+
+  if(usuarioActual){
+    // Autocompletar con datos del usuario
+    const sel=document.getElementById('tipoDoc');
+    for(let i=0;i<sel.options.length;i++){
+      if(sel.options[i].value===usuarioActual.tipoDoc){sel.selectedIndex=i;break;}
+    }
+    document.getElementById('numDoc').value=usuarioActual.numDoc;
+    document.getElementById('nombreCliente').value=usuarioActual.nombres;
+    document.getElementById('emailCliente').value=usuarioActual.email;
+    guestNote.style.display='none';
+    userNote.style.display='block';
+  } else {
+    // Invitado: campos vacíos
+    guestNote.style.display='block';
+    userNote.style.display='none';
+  }
+}
+
+// ═══ NAVEGACION ═══
 function setBN(id){document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
 function showPage(id){
@@ -552,11 +840,15 @@ function showPage(id){
   if(id==='home')renderHome();
   if(id==='catalog')renderCatalog('all');
   if(id==='cart')renderCart();
+  if(id==='perfil')renderPerfil();
   if(id==='pse'){
     document.getElementById('pseAmt').textContent=fmt(Math.round(getTotal()*1.19));
     document.getElementById('pseSuccess').classList.remove('show');
     document.getElementById('pseLoading').classList.remove('show');
+    autocompletarPSE();
   }
+  if(id==='login') limpiarFormLogin();
+  if(id==='registro') limpiarFormRegistro();
 }
 
 function renderHome(){
@@ -643,31 +935,111 @@ function renderCart(){
 
 function removeItem(i){cart.splice(i,1);updateCartCount();renderCart();}
 
+// ═══ LOGIN ═══
+async function iniciarSesion(){
+  const email=document.getElementById('login-email').value.trim();
+  const password=document.getElementById('login-password').value;
+  if(!email||!password){
+    document.getElementById('login-error-msg').textContent='Por favor ingresa tu correo y contraseña.';
+    document.getElementById('login-error').style.display='block';return;
+  }
+  try{
+    const res=await fetch('/api/personas/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email,password})
+    });
+    const data=await res.json();
+    if(!res.ok){
+      document.getElementById('login-error-msg').textContent=data.mensaje||'Correo o contraseña incorrectos.';
+      document.getElementById('login-error').style.display='block';
+      // Limpiar solo contraseña, no email
+      document.getElementById('login-password').value='';
+      return;
+    }
+    activarSesion(data.persona);
+    limpiarFormLogin();
+    mostrarNotif('Bienvenida <span>'+data.persona.nombres+'</span>');
+    showPage('perfil');
+  }catch(e){
+    document.getElementById('login-error-msg').textContent='Error al conectar con el servidor.';
+    document.getElementById('login-error').style.display='block';
+  }
+}
+
+// ═══ REGISTRO ═══
+async function registrarPersona(){
+  const tipoDoc=document.getElementById('reg-tipoDoc').value;
+  const numDoc=document.getElementById('reg-numDoc').value.trim();
+  const nombres=document.getElementById('reg-nombres').value.trim();
+  const apellidos=document.getElementById('reg-apellidos').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const password=document.getElementById('reg-password').value;
+  const telefono=document.getElementById('reg-telefono').value.trim();
+  const ciudad=document.getElementById('reg-ciudad').value.trim();
+
+  if(!tipoDoc||!numDoc||!nombres||!apellidos||!email||!password){
+    document.getElementById('reg-error-msg').textContent='Por favor completa todos los campos obligatorios.';
+    document.getElementById('reg-error').style.display='block';return;
+  }
+  if(password.length<6){
+    document.getElementById('reg-error-msg').textContent='La contraseña debe tener mínimo 6 caracteres.';
+    document.getElementById('reg-error').style.display='block';return;
+  }
+
+  document.getElementById('reg-loading').classList.add('show');
+  document.getElementById('reg-success').classList.remove('show');
+  document.getElementById('reg-error').style.display='none';
+
+  try{
+    const res=await fetch('/api/personas',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({tipoDoc,numDoc,nombres,apellidos,email,password,telefono,ciudad})
+    });
+    const data=await res.json();
+    if(res.status===409){
+      document.getElementById('reg-error-msg').textContent='Ya existe una cuenta con ese documento o correo.';
+      document.getElementById('reg-error').style.display='block';
+      document.getElementById('reg-loading').classList.remove('show');return;
+    }
+    if(!res.ok){
+      document.getElementById('reg-error-msg').textContent=data.mensaje||'Error al crear la cuenta.';
+      document.getElementById('reg-error').style.display='block';
+      document.getElementById('reg-loading').classList.remove('show');return;
+    }
+    document.getElementById('reg-id').textContent='ID de cliente: '+data.id;
+    document.getElementById('reg-success').classList.add('show');
+    activarSesion(data);
+    mostrarNotif('Bienvenida <span>'+data.nombres+'</span> a T\'essence');
+  }catch(e){
+    document.getElementById('reg-error-msg').textContent='Error al conectar con el servidor.';
+    document.getElementById('reg-error').style.display='block';
+  }
+  document.getElementById('reg-loading').classList.remove('show');
+}
+
+// ═══ PAGO PSE ═══
 async function procesarPago(){
   const numDoc=document.getElementById('numDoc').value.trim();
   const nombre=document.getElementById('nombreCliente').value.trim();
   const email=document.getElementById('emailCliente').value.trim();
+
   if(!numDoc||!nombre||!email){alert('Por favor completa todos los campos.');return;}
+  if(numDoc.length<6){alert('El número de documento debe tener mínimo 6 dígitos.');return;}
+  if(nombre.length<2){alert('El nombre debe tener mínimo 2 caracteres.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('El correo electrónico no es válido.');return;}
   if(cart.length===0){alert('Tu carrito está vacío.');return;}
+
   const monto=Math.round(getTotal()*1.19);
   document.getElementById('pseLoading').classList.add('show');
   document.getElementById('pseSuccess').classList.remove('show');
-  try{
-    // 1. Crear el pedido en la API
-    await fetch('/api/pedidos',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        cliente: nombre,
-        productos: cart.map(c=>c.id),
-        total: monto
-      })
-    });
 
-    // 2. Procesar el pago PSE
-    const res=await fetch('/api/pagos-pse',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
+  try{
+    await fetch('/api/pedidos',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({cliente:nombre,productos:cart.map(c=>c.id),total:monto})});
+
+    const res=await fetch('/api/pagos-pse',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         banco_codigo:document.getElementById('banco').value,
         tipo_persona:document.getElementById('tipoPer').value,
@@ -676,139 +1048,28 @@ async function procesarPago(){
         monto,
         descripcion:"Compra T'essence — "+cart.map(c=>c.nombre).join(', '),
         url_respuesta:'https://tessence.co/pagos/respuesta'
-      })
-    });
+      })});
+
     const data=await res.json();
+    if(data.estado==='RECHAZADO'){
+      document.getElementById('pseLoading').classList.remove('show');
+      alert('Transaccion rechazada. Verifica tus datos bancarios e intenta nuevamente.');return;
+    }
     document.getElementById('txnRef').textContent='Referencia: '+data.referencia;
   }catch(e){
     document.getElementById('txnRef').textContent='Referencia: TXN-'+Date.now();
   }
+
   document.getElementById('pseLoading').classList.remove('show');
   document.getElementById('pseSuccess').classList.add('show');
+
+  // Guardar compras solo si hay sesion activa
+  if(usuarioActual) misCompras=[...misCompras,...cart];
   cart=[];updateCartCount();
-}
-
-async function registrarPersona(){
-  const tipoDoc = document.getElementById('reg-tipoDoc').value;
-  const numDoc = document.getElementById('reg-numDoc').value.trim();
-  const nombres = document.getElementById('reg-nombres').value.trim();
-  const apellidos = document.getElementById('reg-apellidos').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const telefono = document.getElementById('reg-telefono').value.trim();
-  const ciudad = document.getElementById('reg-ciudad').value.trim();
-
-  if(!tipoDoc||!numDoc||!nombres||!apellidos||!email){
-    document.getElementById('reg-error-msg').textContent='Por favor completa todos los campos obligatorios.';
-    document.getElementById('reg-error').style.display='block';
-    return;
-  }
-
-  document.getElementById('reg-loading').classList.add('show');
-  document.getElementById('reg-success').classList.remove('show');
-  document.getElementById('reg-error').style.display='none';
-
-  try{
-    const res = await fetch('/api/personas',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({tipoDoc,numDoc,nombres,apellidos,email,telefono,ciudad})
-    });
-    const data = await res.json();
-    if(res.status===409){
-      document.getElementById('reg-error-msg').textContent='Ya existe una cuenta con ese documento o correo.';
-      document.getElementById('reg-error').style.display='block';
-      document.getElementById('reg-loading').classList.remove('show');
-      return;
-    }
-    document.getElementById('reg-id').textContent='ID de cliente: '+data.id;
-    document.getElementById('reg-success').classList.add('show');
-  }catch(e){
-    document.getElementById('reg-error-msg').textContent='Error al conectar con el servidor.';
-    document.getElementById('reg-error').style.display='block';
-  }
-  document.getElementById('reg-loading').classList.remove('show');
 }
 
 renderHome();
 lucide.createIcons();
 </script>
-<!-- REGISTRO -->
-<div id="registro" class="page">
-  <div class="pse-wrap">
-    <button class="back-btn" onclick="showPage('home')">← Volver al inicio</button>
-    <h1>Registro</h1>
-    <p class="pse-sub-title">Crea tu cuenta en T'essence</p>
-
-    <div class="f-grid">
-      <div class="fg">
-        <label>Tipo de Documento</label>
-        <select id="reg-tipoDoc">
-          <option value="CC">Cédula de Ciudadanía</option>
-          <option value="CE">Cédula Extranjería</option>
-          <option value="NIT">NIT</option>
-          <option value="PA">Pasaporte</option>
-        </select>
-      </div>
-      <div class="fg">
-        <label>Número de Documento</label>
-        <input type="text" id="reg-numDoc" placeholder="1023456789">
-      </div>
-      <div class="fg">
-        <label>Nombres</label>
-        <input type="text" id="reg-nombres" placeholder="Tu nombre">
-      </div>
-      <div class="fg">
-        <label>Apellidos</label>
-        <input type="text" id="reg-apellidos" placeholder="Tu apellido">
-      </div>
-      <div class="fg f-full">
-        <label>Correo Electrónico</label>
-        <input type="email" id="reg-email" placeholder="correo@ejemplo.com">
-      </div>
-      <div class="fg">
-        <label>Teléfono</label>
-        <input type="text" id="reg-telefono" placeholder="+573001234567">
-      </div>
-      <div class="fg">
-        <label>Ciudad</label>
-        <input type="text" id="reg-ciudad" placeholder="Medellín">
-      </div>
-    </div>
-
-    <button class="confirm-btn" onclick="registrarPersona()">Crear cuenta</button>
-
-    <div id="reg-loading" class="pse-loading">Registrando...</div>
-
-    <div id="reg-success" class="pse-success">
-      <h3>Registro exitoso</h3>
-      <p>Tu cuenta ha sido creada correctamente.</p>
-      <div class="txn-ref" id="reg-id"></div>
-      <div style="margin-top:1.5rem;">
-        <button class="btn btn-outline" style="color:#fff;border-color:#444;" onclick="showPage('catalog')">Explorar colección</button>
-      </div>
-    </div>
-
-    <div id="reg-error" style="display:none;margin-top:1rem;background:#c0392b;padding:1.5rem;">
-      <p style="font-size:0.6rem;letter-spacing:0.1em;color:#fff;" id="reg-error-msg"></p>
-    </div>
-
-    <p style="font-size:0.45rem;letter-spacing:0.1em;color:var(--gray);text-align:center;margin-top:1.5rem;line-height:1.8;">
-      Tus datos están protegidos bajo la Ley 1581 de 2012 — Habeas Data
-    </p>
-  </div>
-</div>
-<footer style="background:var(--black);color:var(--white);padding:3rem;text-align:center;border-top:1px solid rgba(255,255,255,0.06);">
-  <div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;letter-spacing:0.25em;margin-bottom:1rem;">T<span style="color:var(--gold);">'</span>essence</div>
-  <div style="font-size:0.5rem;letter-spacing:0.25em;text-transform:uppercase;color:#666;margin-bottom:0.8rem;">Viste tu esencia</div>
-  <div style="width:40px;height:1px;background:var(--gold);margin:1.2rem auto;"></div>
-  <div style="font-size:0.48rem;letter-spacing:0.15em;color:#555;line-height:2;">
-    &copy; 2026 T'essence — Todos los derechos reservados<br>
-    Comercio electrónico regulado por Ley 527 de 1999 &nbsp;·&nbsp; Protección de datos Ley 1581 de 2012 &nbsp;·&nbsp; Habeas Data
-  </div>
-  <div style="width:40px;height:1px;background:#333;margin:1.2rem auto;"></div>
-  <div style="font-size:0.45rem;letter-spacing:0.2em;text-transform:uppercase;color:#444;">
-    Desarrollado por Valentina Arias · Ingeniería de Software · FUMC 2026
-  </div>
-</footer>
 </body>
 </html>
