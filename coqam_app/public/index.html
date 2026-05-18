@@ -14,14 +14,14 @@
             <div class="logo">
                 <img src="img/COQUITO LOGO.jpeg" alt="Logo Coquito Amarillo">
             </div>
-            <span class="brand-name">COQUITO AMARILLO</span>
+            <span class="brand-name">COQUITO AMARILLO </span>
         </div>
 
         <nav>
             <ul>
-                <li><a href="#" onclick="filtrarPorCategoria('todas')">INICIO</a></li>
+                <li><a href="#" onclick="filtrarPorCategoria('todas')">Inicio</a></li>
                 <li class="dropdown">
-                    PRODUCTOS▾
+                    Productos ▾
                     <ul class="submenu">
                         <li><a href="#" onclick="filtrarPorCategoria('todas')">Ver Todo</a></li>
                         <hr>
@@ -29,11 +29,12 @@
                         <li><a href="#" onclick="filtrarPorCategoria('Jabones artesanales')">Jabones Artesanales</a></li>
                         <li><a href="#" onclick="filtrarPorCategoria('Sales minerales')">Sales Minerales</a></li>
                         <li><a href="#" onclick="filtrarPorCategoria('Aceites corporales')">Aceites Corporales</a></li>
-                      
+                        <li><a href="#" onclick="filtrarPorCategoria('Exfoliantes')">Exfoliantes</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Gloss Hidratante')">Gloss Hidratante</a></li>
                     </ul>
                 </li>
-                <li><a href="#">ASESORIAS</a></li>
-                <li><a href="#">ENCUENTRANOS</a></li>
+                <li><a href="#footer" onclick="scrollSuave('footer')">Asesorías</a></li>
+                <li><a href="#footer" onclick="scrollSuave('footer')">Encuéntranos</a></li>
             </ul>
         </nav>
 
@@ -42,9 +43,7 @@
                 🛒
                 <span class="carrito-badge" id="carritoBadge">0</span>
             </button>
-            <a href="#" onclick="abrirPSE()" class="btn-pse">
-                
-                Pagar Pedido
+            <a href="#" onclick="abrirPSE()" class="btn-pse"> Pagar Pedido
             </a>
         </div>
     </header>
@@ -55,6 +54,154 @@
         </section>
         <section id="catalogo" class="productos-container"></section>
     </main>
+
+    <!-- FOOTER -->
+  
+<footer id="footer">
+    <div class="footer-container">
+
+        <!-- LOGO Y DESCRIPCIÓN -->
+        <div class="footer-col">
+            <p class="footer-desc"> Productos artesanales elaborados con amor, ingredientes naturales y el aroma del trópico colombiano.
+            </p>
+
+            <div class="footer-redes">
+                <!-- Aquí puedes agregar iconos de redes después -->
+            </div>
+        </div>
+
+        <!-- ENCUÉNTRANOS -->
+        <div class="footer-col">
+            <h4 class="footer-titulo">Encuéntranos</h4>
+
+            <ul class="footer-lista">
+                <li>
+                    <div>
+                        <strong>Punto de venta</strong>
+                        <p>CC El Tesoro - El Poblado</p>
+                        <p>Medellín, Antioquia</p>
+                    </div>
+                </li>
+
+                <li>
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p>
+                            <a href="tel:+573147482930">
+                                314 748 2930
+                            </a>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div>
+                        <strong>Horario de atención</strong>
+                        <p>Lunes a Sábado: 10am - 8pm</p>
+                        <p>Domingo: 11am - 6pm</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ASESORÍAS -->
+        <div class="footer-col">
+            <h4 class="footer-titulo">Asesorías</h4>
+
+            <p class="footer-asesoria-texto">
+                ¿No sabes qué producto es ideal para ti?
+                Nuestro equipo te ayuda a elegir el mejor producto según tus necesidades.
+            </p>
+
+            <ul class="footer-lista">
+
+                <li>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>
+                            <a href="https://wa.me/573147482930" target="_blank">
+                                314 748 2930
+                            </a>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div>
+                        <strong>Instagram</strong>
+                        <p>
+                            <a href="https://instagram.com/coqam_04" target="_blank">
+                                @coqam_04
+                            </a>
+                        </p>
+                    </div>
+                </li>
+
+                <li>
+                    <div>
+                        <strong>Correo</strong>
+                        <p>contacto@coquitoamarillo.com</p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+        <!-- PRODUCTOS -->
+        <div class="footer-col">
+            <h4 class="footer-titulo">Productos</h4>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Velas Aromáticas'); scrollToTop()">
+                        Velas Aromáticas
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Jabones artesanales'); scrollToTop()">
+                        Jabones Artesanales
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Sales minerales'); scrollToTop()">
+                        Sales Minerales
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Aceites corporales'); scrollToTop()">
+                        Aceites Corporales
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Exfoliantes'); scrollToTop()">
+                        Exfoliantes
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0)" onclick="filtrarPorCategoria('Gloss hidratante'); scrollToTop()">
+                        Gloss Hidratante
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- FOOTER BOTTOM -->
+    <div class="footer-bottom">
+        <p>
+            © 2025 Coquito Amarillo S.A.S.
+            — Hecho con 💛 en Medellín, Colombia
+        </p>
+    </div>
+</footer>
 
     <!-- MODAL PRODUCTO -->
     <div id="modalProducto" class="modal">
@@ -76,7 +223,7 @@
                     </div>
 
                     <button class="btn-comprar" onclick="agregarAlCarrito()">
-                      Agregar al Carrito
+                        Agregar al Carrito
                     </button>
                 </div>
             </div>
@@ -109,16 +256,11 @@
         <div class="modal-content" style="max-width: 520px; padding: 40px;">
             <span class="close" onclick="cerrarPSE()">&times;</span>
 
-            <!-- PASO 1: FORMULARIO -->
             <div id="psePaso1">
                 <div style="text-align:center; margin-bottom: 24px;">
-                   
                     <h2 style="color:#5c4326; font-size:1.3rem;">Pago Seguro PSE</h2>
-                   
                 </div>
-
                 <div class="pse-resumen" id="pseResumen"></div>
-
                 <div class="pse-campo">
                     <label>Banco</label>
                     <select id="pseBanco">
@@ -127,22 +269,15 @@
                         <option>Davivienda</option>
                         <option>BBVA</option>
                         <option>Nequi</option>
-                        
                     </select>
                 </div>
-
                 <div class="pse-campo">
                     <label>Tipo de persona</label>
                     <div style="display:flex; gap:12px; margin-top:8px;">
-                        <label class="pse-radio">
-                            <input type="radio" name="tipoPersona" value="Natural" checked> Natural
-                        </label>
-                        <label class="pse-radio">
-                            <input type="radio" name="tipoPersona" value="Jurídica"> Jurídica
-                        </label>
+                        <label class="pse-radio"><input type="radio" name="tipoPersona" value="Natural" checked> Natural</label>
+                        <label class="pse-radio"><input type="radio" name="tipoPersona" value="Jurídica"> Jurídica</label>
                     </div>
                 </div>
-
                 <div class="pse-campo">
                     <label>Tipo de documento</label>
                     <select id="pseTipoDoc">
@@ -151,30 +286,24 @@
                         <option>Pasaporte</option>
                     </select>
                 </div>
-
                 <div class="pse-campo">
                     <label>Número de documento</label>
                     <input type="text" id="pseDocumento">
                 </div>
-
                 <div class="pse-campo">
                     <label>Correo electrónico</label>
                     <input type="email" id="pseCorreo">
                 </div>
-
-                <button class="btn-comprar" onclick="procesarPSE()" style="margin-top:20px;">
-                     Continuar con PSE
+                <button class="btn-comprar" onclick="procesarPSE()" style="margin-top:20px;"> Continuar pago con PSE
                 </button>
             </div>
 
-            <!-- PASO 2: PROCESANDO -->
             <div id="psePaso2" style="display:none; text-align:center; padding: 30px 0;">
                 <div class="pse-spinner"></div>
                 <h3 style="color:#5c4326; margin-top: 20px;">Procesando pago...</h3>
                 <p style="color:#999; font-size:13px; margin-top:8px;">Conectando con tu banco</p>
             </div>
 
-            <!-- PASO 3: ÉXITO -->
             <div id="psePaso3" style="display:none; text-align:center; padding: 20px 0;">
                 <div style="font-size: 64px; margin-bottom: 16px;">✅</div>
                 <h2 style="color:#2e7d32; margin-bottom: 8px;">¡Pago Exitoso!</h2>
@@ -195,7 +324,6 @@
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
         let productoActual = null;
 
-        // ─── CARGAR PRODUCTOS ───────────────────────────────────────────
         async function cargarProductos() {
             try {
                 const respuesta = await fetch('/api/productos');
@@ -223,7 +351,6 @@
             `).join('');
         }
 
-        // ─── MODAL PRODUCTO ─────────────────────────────────────────────
         function verDetalles(id) {
             productoActual = todosLosProductos.find(prod => prod.id === id);
             document.getElementById('modalNombre').innerText = productoActual.nombre;
@@ -241,7 +368,6 @@
             productoActual = null;
         }
 
-        // ─── CANTIDAD ───────────────────────────────────────────────────
         function cambiarCantidad(valor) {
             const input = document.getElementById('cantidad');
             let actual = parseInt(input.value) + valor;
@@ -253,7 +379,6 @@
             input.value = actual;
         }
 
-        // ─── AGREGAR AL CARRITO ─────────────────────────────────────────
         function agregarAlCarrito() {
             if (!productoActual) return;
             const cantidad = parseInt(document.getElementById('cantidad').value);
@@ -291,7 +416,6 @@
             setTimeout(() => btn.classList.remove('btn-success'), 1500);
         }
 
-        // ─── PANEL CARRITO ──────────────────────────────────────────────
         function toggleCarrito() {
             const panel = document.getElementById('carritoPanel');
             const overlay = document.getElementById('carritoOverlay');
@@ -344,7 +468,6 @@
             badge.style.display = total > 0 ? 'flex' : 'none';
         }
 
-        // ─── TOAST ──────────────────────────────────────────────────────
         function mostrarToast(mensaje, tipo = 'success') {
             const toast = document.getElementById('toast');
             toast.innerText = mensaje;
@@ -352,27 +475,30 @@
             setTimeout(() => toast.className = 'toast', 3000);
         }
 
-        // ─── FILTROS ────────────────────────────────────────────────────
         function filtrarPorCategoria(cat) {
             if (cat === 'todas') mostrarProductos(todosLosProductos);
             else mostrarProductos(todosLosProductos.filter(p => p.categoria.trim() === cat.trim()));
         }
 
-        // ─── SIMULADOR PSE ───────────────────────────────────────────────
+        function scrollSuave(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function abrirPSE() {
             if (carrito.length === 0) {
-                mostrarToast('Tu carrito está vacío', 'warn');
+                mostrarToast('Tu carrito está vacío 🛒', 'warn');
                 return;
             }
-
             const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
             const items = carrito.map(i => `${i.nombre} x${i.cantidad}`).join('<br>');
-
             document.getElementById('pseResumen').innerHTML = `
                 <strong>Resumen del pedido:</strong><br>${items}<br>
                 <strong style="color:#c58b00; font-size:15px;">Total: $${total.toLocaleString()}</strong>
             `;
-
             document.getElementById('psePaso1').style.display = 'block';
             document.getElementById('psePaso2').style.display = 'none';
             document.getElementById('psePaso3').style.display = 'none';
@@ -398,7 +524,6 @@
             setTimeout(() => {
                 const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
                 const items = carrito.map(i => `${i.nombre} x${i.cantidad}`).join('<br>');
-
                 document.getElementById('pseResumenFinal').innerHTML = `
                     <strong>Pedido confirmado:</strong><br>${items}<br>
                     <strong style="color:#c58b00; font-size:15px;">Total pagado: $${total.toLocaleString()}</strong>
@@ -406,14 +531,12 @@
                 document.getElementById('pseCorreoConfirm').innerText = correo;
                 document.getElementById('psePaso2').style.display = 'none';
                 document.getElementById('psePaso3').style.display = 'block';
-
                 carrito = [];
                 localStorage.setItem('carrito', JSON.stringify(carrito));
                 actualizarBadge();
             }, 2500);
         }
 
-        // ─── INIT ────────────────────────────────────────────────────────
         cargarProductos();
 
         window.onclick = function(event) {
