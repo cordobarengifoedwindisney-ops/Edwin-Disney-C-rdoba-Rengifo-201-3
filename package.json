@@ -11,6 +11,12 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/josechepeg/coquito-amarillo-api-LPM01-201-3.git"
+  "name": "feature-valentina-arias",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -26,5 +32,10 @@
   "devDependencies": {
     "jest": "^30.3.0",
     "nodemon": "^3.1.14"
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
