@@ -1,55 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-let products = [
-  {
-    id: 1,
-    name: 'Laptop',
-    price: 2500
-  },
-  {
-    id: 2,
-    name: 'Mouse',
-    price: 120
-  }
-];
+const {
+  getProducts,
+  getProductById,
+  createProduct,
+  updateProduct,
+  deleteProduct
+} = require('../controllers/productController');
 
+// OBTENER TODOS LOS PRODUCTOS
+router.get('/', getProducts);
 
-// GET ALL PRODUCTS
-router.get('/', (req, res) => {
+// OBTENER PRODUCTO POR ID
+router.get('/:id', getProductById);
 
-  res.json(products);
+// CREAR PRODUCTO
+router.post('/', createProduct);
 
-});
+// ACTUALIZAR PRODUCTO
+router.put('/:id', updateProduct);
 
-
-// POST PRODUCT
-router.post('/', (req, res) => {
-
-  const { name, price } = req.body;
-
-  // VALIDACIÓN
-  if (!name || !price) {
-
-    return res.status(400).json({
-      message: 'Nombre y precio son obligatorios'
-    });
-
-  }
-
-  const newProduct = {
-    id: products.length + 1,
-    name,
-    price
-  };
-
-  products.push(newProduct);
-
-  res.status(201).json({
-    message: 'Producto creado correctamente',
-    product: newProduct
-  });
-
-});
+// ELIMINAR PRODUCTO
+router.delete('/:id', deleteProduct);
 
 module.exports = router;

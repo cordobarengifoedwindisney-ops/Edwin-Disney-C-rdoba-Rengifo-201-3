@@ -3,15 +3,25 @@ let products = [
     id: 1,
     name: 'Laptop',
     price: 2500
+  },
+  {
+    id: 2,
+    name: 'Mouse',
+    price: 120
   }
 ];
 
+// GET TODOS
 const getProducts = (req, res) => {
   res.json(products);
 };
 
+// GET POR ID
 const getProductById = (req, res) => {
-  const product = products.find(p => p.id == req.params.id);
+
+  const product = products.find(
+    p => p.id == req.params.id
+  );
 
   if (!product) {
     return res.status(404).json({
@@ -22,7 +32,9 @@ const getProductById = (req, res) => {
   res.json(product);
 };
 
+// CREAR PRODUCTO
 const createProduct = (req, res) => {
+
   const { name, price } = req.body;
 
   if (!name || !price) {
@@ -39,11 +51,19 @@ const createProduct = (req, res) => {
 
   products.push(newProduct);
 
-  res.status(201).json(newProduct);
+  res.status(201).json({
+    message: 'Producto creado correctamente',
+    product: newProduct
+  });
+
 };
 
+// ACTUALIZAR PRODUCTO
 const updateProduct = (req, res) => {
-  const product = products.find(p => p.id == req.params.id);
+
+  const product = products.find(
+    p => p.id == req.params.id
+  );
 
   if (!product) {
     return res.status(404).json({
@@ -56,15 +76,34 @@ const updateProduct = (req, res) => {
   product.name = name || product.name;
   product.price = price || product.price;
 
-  res.json(product);
+  res.json({
+    message: 'Producto actualizado',
+    product
+  });
+
 };
 
+// ELIMINAR PRODUCTO
 const deleteProduct = (req, res) => {
-  products = products.filter(p => p.id != req.params.id);
+
+  const product = products.find(
+    p => p.id == req.params.id
+  );
+
+  if (!product) {
+    return res.status(404).json({
+      message: 'Producto no encontrado'
+    });
+  }
+
+  products = products.filter(
+    p => p.id != req.params.id
+  );
 
   res.json({
-    message: 'Producto eliminado'
+    message: 'Producto eliminado correctamente'
   });
+
 };
 
 module.exports = {
