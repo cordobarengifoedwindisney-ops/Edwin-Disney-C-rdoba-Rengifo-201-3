@@ -1,0 +1,31 @@
+const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+const productosRouter = require('./routes/productos');
+const pedidosRouter = require('./routes/pedidos');
+const pseRouter = require('./routes/pagos');
+const personasRouter = require('./routes/personas');
+
+app.use('/api/productos', productosRouter);
+app.use('/api/pedidos', pedidosRouter);
+app.use('/api/pagos-pse', pseRouter);
+app.use('/api/personas', personasRouter);
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor escuchando en puerto ${PORT}`));
+
+module.exports = app;
