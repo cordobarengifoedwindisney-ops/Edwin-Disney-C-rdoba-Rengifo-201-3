@@ -1,3 +1,4 @@
+Coquito Amarillo API REST
 # Coquito Amarillo API
 
 API REST desarrollada con Node.js y Express para la gestión de productos, pedidos y pagos PSE.
@@ -197,14 +198,87 @@ Proyecto desarrollado por Jose Gabriel Agudelo Vargas.
 Durante el desarrollo de este proyecto se consultó documentación oficial de Node.js y Express.js, además de utilizar herramientas de apoyo basadas en inteligencia artificial como ChatGPT de OpenAI para resolver dudas técnicas, comprender conceptos y reforzar el aprendizaje durante la implementación de la API REST.
 # T'essence — API REST
 
-API REST desarrollada con Node.js y Express para la tienda virtual T'essence.
-Construida como parte del curso Lenguajes de Programación para Móviles — FUMC 2026.
+Proyecto desarrollado con Node.js y Express que permite gestionar productos, pedidos y pagos PSE mediante una API REST.
 
-## Instalación y ejecución
+Tecnologías utilizadas
 
+- Node.js
+- Express
+- Cors
+- Nodemon
+
+Instalación del proyecto
+
+```bash
 npm install
-node src/app.js
+```
 
+Ejecución del servidor
+
+```bash
+node src/app.js
+```
+
+También se puede ejecutar con:
+
+```bash
+npm run dev
+```
+
+Funcionalidades disponibles
+
+Productos
+
+- Consultar todos los productos
+- Consultar producto por ID
+- Registrar nuevos productos
+- Actualizar productos
+- Eliminar productos
+
+Pedidos
+
+- Crear pedidos
+- Consultar pedidos registrados
+
+Pagos PSE
+
+- Registrar pagos PSE
+- Consultar pagos por referencia
+
+Rutas principales
+
+GET
+
+```bash
+/api/productos
+/api/productos/:id
+/api/pedidos
+/api/pagos-pse/:ref
+```
+
+POST
+
+```bash
+/api/productos
+/api/pedidos
+/api/pagos-pse
+```
+
+PUT
+
+```bash
+/api/productos/:id
+```
+
+DELETE
+
+```bash
+/api/productos/:id
+```
+
+Autor
+
+Juan David Torres
 Servidor disponible en http://localhost:3000
 
 ## Endpoints

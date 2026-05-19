@@ -13,16 +13,23 @@
     "url": "git+https://github.com/josechepeg/coquito-amarillo-api-LPM01-201-3.git"
   "name": "feature-valentina-arias",
   "version": "1.0.0",
-  "description": "",
+  "description": "LPM01-201-3 U4AEAE1 API-REST+NodeJS+Express directamente en codesapaces de GitHub.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/torresjuandavid698-create/coquito-amarillo-api-LPM01-201-3.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "bugs": {
+    "url": "https://github.com/torresjuandavid698-create/coquito-amarillo-api-LPM01-201-3/issues"
     "url": "https://github.com/josechepeg/coquito-amarillo-api-LPM01-201-3/issues"
   },
   "homepage": "https://github.com/josechepeg/coquito-amarillo-api-LPM01-201-3#readme",
@@ -35,7 +42,15 @@
   "devDependencies": {
     "nodemon": "^3.1.14"
   },
+  "homepage": "https://github.com/torresjuandavid698-create/coquito-amarillo-api-LPM01-201-3#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
