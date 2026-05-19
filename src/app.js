@@ -23,5 +23,9 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor en puerto ${PORT}`);
 });
-
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({
+    message: err.message || 'Error interno del servidor'
+  });
+});
 module.exports = app;
