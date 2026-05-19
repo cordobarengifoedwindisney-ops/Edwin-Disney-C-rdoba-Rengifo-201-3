@@ -1,4 +1,6 @@
 {
+  "dependencies": {
+    "express": "^4.19.2"
   "name": "coquito-amarillo-api-lpm01-201-3",
   "version": "1.0.0",
   "description": "LPM01-201-3 U4AEAE1 API-REST+NodeJS+Express directamente en codesapaces de GitHub.",
