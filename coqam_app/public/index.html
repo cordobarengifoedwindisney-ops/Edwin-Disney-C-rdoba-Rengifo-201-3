@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coquito Amarillo S.A.S. - Tienda Virtual</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="img/COQUITO LOGO.jpeg" alt="Logo Coquito Amarillo">
+            </div>
+            <span class="brand-name">COQUITO AMARILLO</span>
+        </div>
+
+        <!-- BOTÓN HAMBURGUESA (solo móvil) -->
+        <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="#" onclick="filtrarPorCategoria('todas'); cerrarMenu()">Inicio</a></li>
+                <li class="dropdown" id="dropdownProductos">
+                    <span onclick="toggleDropdown()">Productos ▾</span>
+                    <ul class="submenu" id="submenuProductos">
+                        <li><a href="#" onclick="filtrarPorCategoria('todas'); cerrarMenu()">Ver Todo</a></li>
+                        <hr>
+                        <li><a href="#" onclick="filtrarPorCategoria('Velas Aromáticas'); cerrarMenu()">Velas Aromáticas</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Jabones artesanales'); cerrarMenu()">Jabones Artesanales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Sales minerales'); cerrarMenu()">Sales Minerales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Aceites corporales'); cerrarMenu()">Aceites Corporales</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Exfoliantes'); cerrarMenu()">Exfoliantes</a></li>
+                        <li><a href="#" onclick="filtrarPorCategoria('Gloss Hidratante'); cerrarMenu()">Gloss Hidratante</a></li>
+                    </ul>
+                </li>
+                <li><a href="#footer" onclick="scrollSuave('footer'); cerrarMenu()">Asesorías</a></li>
+                <li><a href="#footer" onclick="scrollSuave('footer'); cerrarMenu()">Encuéntranos</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <button class="btn-carrito" onclick="toggleCarrito()">
+                🛒
+                <span class="carrito-badge" id="carritoBadge">0</span>
+            </button>
+            <a href="#" onclick="abrirPSE()" class="btn-pse">Pagar Pedido</a>
+        </div>
+    </header>
+
+    <!-- OVERLAY MENÚ MÓVIL -->
+    <div id="menuOverlay" class="menu-overlay" onclick="cerrarMenu()"></div>
+
+    <main>
+        <section class="hero">
+            <h1>Artesanías que iluminan tu alma</h1>
+        </section>
+        <section id="catalogo" class="productos-container"></section>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-container">
+
+
+                <div class="footer-redes"></div>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-titulo">Encuéntranos</h4>
+                <ul class="footer-lista">
+                    <li>
+                        <div>
+                            <strong>Punto de venta</strong>
+                            <p>CC El Tesoro - El Poblado</p>
+                            <p>Medellín, Antioquia</p>
+                        </div>
+                    </li>
+
+                        <div>
+                            <strong>Horario de atención</strong>
+                            <p>Lunes a Sábado: 10am - 8pm</p>
+                            <p>Domingo: 11am - 6pm</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <br> 
+                <h4 class="footer-titulo">Asesorías</h4>
+
+                <ul class="footer-lista">
+                    <li>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p><a href="https://wa.me/573147482930" target="_blank">314 748 2930</a></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Instagram</strong>
+                            <p><a href="https://instagram.com/coqam_04" target="_blank">@coqam_04</a></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <strong>Correo</strong>
+                            <p>contacto@coquitoamarillo.com</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 Coquito Amarillo S.A.S. — Hecho con 💛 en Medellín, Colombia</p>
+        </div>
+    </footer>
+
+    <!-- MODAL PRODUCTO -->
+    <div id="modalProducto" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <div class="modal-body">
+                <img id="modalImg" src="" alt="">
+                <div class="modal-info">
+                    <h2 id="modalNombre"></h2>
+                    <p id="modalId" class="id-tag"></p>
+                    <p id="modalDescripcion"></p>
+                    <p id="modalStock" style="font-weight: bold; margin-top: 10px;"></p>
+                    <p id="modalPrecio" class="precio-grande"></p>
+
+                    <div class="cantidad-control">
+                        <button class="btn-cantidad" onclick="cambiarCantidad(-1)">−</button>
+                        <input type="number" id="cantidad" value="1" min="1" readonly>
+                        <button class="btn-cantidad" onclick="cambiarCantidad(1)">+</button>
+                    </div>
+
+                    <button class="btn-comprar" onclick="agregarAlCarrito()">
+                        Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PANEL LATERAL DEL CARRITO -->
+    <div id="carritoPanel" class="carrito-panel">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button onclick="toggleCarrito()" class="carrito-close">&times;</button>
+        </div>
+        <div id="carritoItems" class="carrito-items">
+            <p class="carrito-vacio">Tu carrito está vacío</p>
+        </div>
+        <div class="carrito-footer">
+            <div class="carrito-total">
+                Total: <span id="carritoTotal">$0</span>
+            </div>
+            <a href="#" onclick="toggleCarrito(); abrirPSE()" class="btn-pagar">Pagar con PSE</a>
+        </div>
+    </div>
+    <div id="carritoOverlay" class="carrito-overlay" onclick="toggleCarrito()"></div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <!-- MODAL SIMULADOR PSE -->
+    <div id="modalPSE" class="modal">
+        <div class="modal-content modal-content-pse">
+            <span class="close" onclick="cerrarPSE()">&times;</span>
+
+            <div id="psePaso1">
+                <div style="text-align:center; margin-bottom: 24px;">
+                    <h2 style="color:#5c4326; font-size:1.3rem;">Pago Seguro PSE</h2>
+                </div>
+                <div class="pse-resumen" id="pseResumen"></div>
+                <div class="pse-campo">
+                    <label>Banco</label>
+                    <select id="pseBanco">
+                        <option value="">Selecciona tu banco</option>
+                        <option>Bancolombia</option>
+                        <option>Davivienda</option>
+                        <option>BBVA</option>
+                        <option>Nequi</option>
+                    </select>
+                </div>
+                <div class="pse-campo">
+                    <label>Tipo de persona</label>
+                    <div style="display:flex; gap:12px; margin-top:8px;">
+                        <label class="pse-radio"><input type="radio" name="tipoPersona" value="Natural" checked> Natural</label>
+                        <label class="pse-radio"><input type="radio" name="tipoPersona" value="Jurídica"> Jurídica</label>
+                    </div>
+                </div>
+                <div class="pse-campo">
+                    <label>Tipo de documento</label>
+                    <select id="pseTipoDoc">
+                        <option>Cédula de Ciudadanía</option>
+                        <option>NIT</option>
+                        <option>Pasaporte</option>
+                    </select>
+                </div>
+                <div class="pse-campo">
+                    <label>Número de documento</label>
+                    <input type="text" id="pseDocumento">
+                </div>
+                <div class="pse-campo">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="pseCorreo">
+                </div>
+                <button class="btn-comprar" onclick="procesarPSE()" style="margin-top:20px;">Continuar pago con PSE</button>
+            </div>
+
+            <div id="psePaso2" style="display:none; text-align:center; padding: 30px 0;">
+                <div class="pse-spinner"></div>
+                <h3 style="color:#5c4326; margin-top: 20px;">Procesando pago...</h3>
+                <p style="color:#999; font-size:13px; margin-top:8px;">Conectando con tu banco</p>
+            </div>
+
+            <div id="psePaso3" style="display:none; text-align:center; padding: 20px 0;">
+                <div style="font-size: 64px; margin-bottom: 16px;">✅</div>
+                <h2 style="color:#2e7d32; margin-bottom: 8px;">¡Pago Exitoso!</h2>
+                <p style="color:#666; font-size:14px; margin-bottom: 16px;">Tu pedido ha sido confirmado</p>
+                <div class="pse-resumen" id="pseResumenFinal"></div>
+                <p style="color:#999; font-size:12px; margin-top:16px;">
+                    Se enviará un comprobante a <strong id="pseCorreoConfirm"></strong>
+                </p>
+                <button class="btn-comprar" onclick="cerrarPSE()" style="margin-top:24px; background:#2e7d32;">
+                    Volver a la tienda
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let todosLosProductos = [];
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        let productoActual = null;
+
+        async function cargarProductos() {
+            try {
+                const respuesta = await fetch('/api/productos');
+                todosLosProductos = await respuesta.json();
+                mostrarProductos(todosLosProductos);
+                actualizarBadge();
+            } catch (error) {
+                console.error("Error cargando productos:", error);
+            }
+        }
+
+        function mostrarProductos(lista) {
+            const contenedor = document.getElementById('catalogo');
+            if (lista.length === 0) {
+                contenedor.innerHTML = `<p style="text-align:center; width:100%;">No hay productos para mostrar.</p>`;
+                return;
+            }
+            contenedor.innerHTML = lista.map(p => `
+                <div class="producto-card" onclick="verDetalles('${p.id}')">
+                    <img src="img/${p.id}.jpg" onerror="this.src='img/COQUITO LOGO.jpeg'">
+                    <h3>${p.nombre}</h3>
+                    <p class="precio">$${p.precio.toLocaleString()}</p>
+                    <span class="ver-mas">Click para ver detalles</span>
+                </div>
+            `).join('');
+        }
+
+        function verDetalles(id) {
+            productoActual = todosLosProductos.find(prod => prod.id === id);
+            document.getElementById('modalNombre').innerText = productoActual.nombre;
+            document.getElementById('modalId').innerText = `Referencia: ${productoActual.id}`;
+            document.getElementById('modalDescripcion').innerText = productoActual.descripcion;
+            document.getElementById('modalStock').innerText = `Stock: ${productoActual.stock} unidades`;
+            document.getElementById('modalPrecio').innerText = `$${productoActual.precio.toLocaleString()}`;
+            document.getElementById('modalImg').src = `img/${productoActual.id}.jpg`;
+            document.getElementById('cantidad').value = 1;
+            document.getElementById('modalProducto').style.display = "block";
+        }
+
+        function cerrarModal() {
+            document.getElementById('modalProducto').style.display = "none";
+            productoActual = null;
+        }
+
+        function cambiarCantidad(valor) {
+            const input = document.getElementById('cantidad');
+            let actual = parseInt(input.value) + valor;
+            if (actual < 1) actual = 1;
+            if (productoActual && actual > productoActual.stock) {
+                actual = productoActual.stock;
+                mostrarToast(`Solo hay ${productoActual.stock} unidades disponibles`, 'warn');
+            }
+            input.value = actual;
+        }
+
+        function agregarAlCarrito() {
+            if (!productoActual) return;
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            if (cantidad > productoActual.stock) {
+                mostrarToast('No hay suficiente stock disponible', 'error');
+                return;
+            }
+            const existente = carrito.find(item => item.id === productoActual.id);
+            if (existente) {
+                const nuevaCantidad = existente.cantidad + cantidad;
+                if (nuevaCantidad > productoActual.stock) {
+                    mostrarToast(`Solo puedes agregar ${productoActual.stock} unidades en total`, 'warn');
+                    return;
+                }
+                existente.cantidad = nuevaCantidad;
+            } else {
+                carrito.push({
+                    id: productoActual.id,
+                    nombre: productoActual.nombre,
+                    precio: productoActual.precio,
+                    cantidad: cantidad,
+                    imagen: `img/${productoActual.id}.jpg`
+                });
+            }
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarBadge();
+            renderizarCarrito();
+            mostrarToast(`✅ ${productoActual.nombre} agregado al carrito`, 'success');
+            const btn = document.querySelector('.btn-comprar');
+            btn.classList.add('btn-success');
+            setTimeout(() => btn.classList.remove('btn-success'), 1500);
+        }
+
+        function toggleCarrito() {
+            const panel = document.getElementById('carritoPanel');
+            const overlay = document.getElementById('carritoOverlay');
+            panel.classList.toggle('open');
+            overlay.classList.toggle('open');
+            renderizarCarrito();
+        }
+
+        function renderizarCarrito() {
+            const contenedor = document.getElementById('carritoItems');
+            const totalEl = document.getElementById('carritoTotal');
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `<p class="carrito-vacio">Tu carrito está vacío 🌿</p>`;
+                totalEl.innerText = '$0';
+                return;
+            }
+            let total = 0;
+            contenedor.innerHTML = carrito.map((item, idx) => {
+                const subtotal = item.precio * item.cantidad;
+                total += subtotal;
+                return `
+                    <div class="carrito-item">
+                        <img src="${item.imagen}" onerror="this.src='img/COQUITO LOGO.jpeg'" alt="${item.nombre}">
+                        <div class="carrito-item-info">
+                            <p class="carrito-item-nombre">${item.nombre}</p>
+                            <p class="carrito-item-precio">$${item.precio.toLocaleString()} × ${item.cantidad}</p>
+                            <p class="carrito-item-subtotal">$${subtotal.toLocaleString()}</p>
+                        </div>
+                        <button class="carrito-item-remove" onclick="eliminarDelCarrito(${idx})">🗑️</button>
+                    </div>
+                `;
+            }).join('');
+            totalEl.innerText = `$${total.toLocaleString()}`;
+        }
+
+        function eliminarDelCarrito(idx) {
+            carrito.splice(idx, 1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            actualizarBadge();
+            renderizarCarrito();
+        }
+
+        function actualizarBadge() {
+            const total = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+            const badge = document.getElementById('carritoBadge');
+            badge.innerText = total;
+            badge.style.display = total > 0 ? 'flex' : 'none';
+        }
+
+        function mostrarToast(mensaje, tipo = 'success') {
+            const toast = document.getElementById('toast');
+            toast.innerText = mensaje;
+            toast.className = `toast toast-${tipo} show`;
+            setTimeout(() => toast.className = 'toast', 3000);
+        }
+
+        function filtrarPorCategoria(cat) {
+            if (cat === 'todas') mostrarProductos(todosLosProductos);
+            else mostrarProductos(todosLosProductos.filter(p => p.categoria.trim() === cat.trim()));
+        }
+
+        function scrollSuave(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function abrirPSE() {
+            if (carrito.length === 0) {
+                mostrarToast('Tu carrito está vacío 🛒', 'warn');
+                return;
+            }
+            const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+            const items = carrito.map(i => `${i.nombre} x${i.cantidad}`).join('<br>');
+            document.getElementById('pseResumen').innerHTML = `
+                <strong>Resumen del pedido:</strong><br>${items}<br>
+                <strong style="color:#c58b00; font-size:15px;">Total: $${total.toLocaleString()}</strong>
+            `;
+            document.getElementById('psePaso1').style.display = 'block';
+            document.getElementById('psePaso2').style.display = 'none';
+            document.getElementById('psePaso3').style.display = 'none';
+            document.getElementById('modalPSE').style.display = 'block';
+        }
+
+        function cerrarPSE() {
+            document.getElementById('modalPSE').style.display = 'none';
+        }
+
+        function procesarPSE() {
+            const banco  = document.getElementById('pseBanco').value;
+            const doc    = document.getElementById('pseDocumento').value.trim();
+            const correo = document.getElementById('pseCorreo').value.trim();
+            if (!banco)  { mostrarToast('Selecciona un banco', 'warn'); return; }
+            if (!doc)    { mostrarToast('Ingresa tu número de documento', 'warn'); return; }
+            if (!correo || !correo.includes('@')) { mostrarToast('Ingresa un correo válido', 'warn'); return; }
+            document.getElementById('psePaso1').style.display = 'none';
+            document.getElementById('psePaso2').style.display = 'block';
+            setTimeout(() => {
+                const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
+                const items = carrito.map(i => `${i.nombre} x${i.cantidad}`).join('<br>');
+                document.getElementById('pseResumenFinal').innerHTML = `
+                    <strong>Pedido confirmado:</strong><br>${items}<br>
+                    <strong style="color:#c58b00; font-size:15px;">Total pagado: $${total.toLocaleString()}</strong>
+                `;
+                document.getElementById('pseCorreoConfirm').innerText = correo;
+                document.getElementById('psePaso2').style.display = 'none';
+                document.getElementById('psePaso3').style.display = 'block';
+                carrito = [];
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                actualizarBadge();
+            }, 2500);
+        }
+
+        /* ── MENÚ MÓVIL ── */
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            const btn = document.getElementById('menuToggle');
+            const overlay = document.getElementById('menuOverlay');
+            nav.classList.toggle('nav-open');
+            btn.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function cerrarMenu() {
+            const nav = document.getElementById('mainNav');
+            const btn = document.getElementById('menuToggle');
+            const overlay = document.getElementById('menuOverlay');
+            nav.classList.remove('nav-open');
+            btn.classList.remove('active');
+            overlay.classList.remove('active');
+            // Cerrar submenú también
+            document.getElementById('submenuProductos').classList.remove('submenu-open');
+        }
+
+        function toggleDropdown() {
+            const submenu = document.getElementById('submenuProductos');
+            // En móvil abrimos/cerramos con click; en desktop lo maneja CSS hover
+            if (window.innerWidth <= 768) {
+                submenu.classList.toggle('submenu-open');
+            }
+        }
+
+        cargarProductos();
+
+        window.onclick = function(event) {
+            const modalProducto = document.getElementById('modalProducto');
+            const modalPSE = document.getElementById('modalPSE');
+            if (event.target == modalProducto) cerrarModal();
+            if (event.target == modalPSE) cerrarPSE();
+        }
+    </script>
+</body>
+</html>
